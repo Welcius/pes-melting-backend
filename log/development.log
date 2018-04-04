@@ -179,3 +179,854 @@ Migrating to AddUsernameToUsers (20180403110536)
             FROM sqlite_temp_master
             WHERE name='index_users_on_email' AND type='index'
 [0m
+Started GET "/" for 62.83.208.103 at 2018-04-04 16:21:32 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.5.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.5.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (3.5ms)
+Completed 200 OK in 14ms (Views: 8.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 62.83.208.103 at 2018-04-04 16:21:32 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/favicon.ico" for 62.83.208.103 at 2018-04-04 16:21:33 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/register" for 62.83.208.103 at 2018-04-04 16:21:38 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [GET] "/register"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/register" for 62.83.208.103 at 2018-04-04 16:21:44 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+Completed 406 Not Acceptable in 18ms
+
+
+  
+ActionController::UnknownFormat (UsersController#register is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.1.4) lib/action_controller/metal/implicit_render.rb:53:in `default_render'
+actionpack (5.1.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.1.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.1.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:186:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.1.4) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.4) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/register" for 62.83.208.103 at 2018-04-04 16:22:14 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+Completed 500 Internal Server Error in 2ms
+
+
+  
+ActionView::MissingTemplate (Missing template users/register, application/register with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/ubuntu/workspace/app/views"
+):
+  
+app/controllers/users_controller.rb:3:in `register'
+Started GET "/register" for 62.83.208.103 at 2018-04-04 16:22:55 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 3ms (Views: 2.4ms)
+
+
+Started GET "/register?hola=12345" for 62.83.208.103 at 2018-04-04 16:27:42 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"hola"=>"12345"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 1.0ms)
+
+
+Started GET "/" for 62.83.208.103 at 2018-04-04 17:22:41 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.5.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.5.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (47.5ms)
+Completed 200 OK in 169ms (Views: 99.4ms)
+
+
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:23:07 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+LoadError (cannot load such file -- email_address):
+  
+app/controllers/users_controller.rb:2:in `<module:UsersHelper>'
+app/controllers/users_controller.rb:1:in `<top (required)>'
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:23:29 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+LoadError (cannot load such file -- email_address):
+  
+app/controllers/users_controller.rb:1:in `<top (required)>'
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:24:30 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 30ms
+
+
+  
+LoadError (cannot load such file -- email_address):
+  
+app/controllers/users_controller.rb:10:in `checkRegisterFields?'
+app/controllers/users_controller.rb:27:in `register'
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:24:37 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 19ms
+
+
+  
+NameError (uninitialized constant UsersHelper::EmailAddress):
+  
+app/controllers/users_controller.rb:11:in `checkRegisterFields?'
+app/controllers/users_controller.rb:26:in `register'
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:24:52 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 3ms
+
+
+  
+LoadError (cannot load such file -- email_address):
+  
+app/controllers/users_controller.rb:10:in `checkRegisterFields?'
+app/controllers/users_controller.rb:27:in `register'
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:25:38 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+LoadError (cannot load such file -- email_address):
+  
+app/controllers/users_controller.rb:3:in `<module:UsersHelper>'
+app/controllers/users_controller.rb:1:in `<top (required)>'
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:27:50 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:27:58 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 1.0ms)
+
+
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:28:10 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms)
+
+
+Started GET "/register?username=a&email=c&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:28:25 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"c", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 4ms (Views: 4.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=a&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:28:40 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"a", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 49ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:28:51 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopezgmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:29:00 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopezgmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=" for 62.83.208.103 at 2018-04-04 17:29:03 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:29:09 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaa%20aa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:29:30 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaa aa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaa%20aa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:05 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaa aa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 2ms (Views: 1.5ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:08 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:11 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms)
+
+
+Started GET "/register?username=aaaaa0a0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:15 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaa0a0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms)
+
+
+Started GET "/register?username=aaaaa0a0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:30 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaa0a0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 2ms (Views: 1.2ms)
+
+
+Started GET "/register?username=aaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:33 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 1ms (Views: 0.7ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:31:44 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 2ms (Views: 1.0ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:35:32 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 2ms (Views: 1.0ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20180403104522)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180403104522"]]
+  [1m[35m (11.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddEmailToUsers (20180403105500)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "email" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (16.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180403105500"]]
+  [1m[35m (16.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordToUsers (20180403105846)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "password" varchar DEFAULT '' NOT NULL[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180403105846"]]
+  [1m[35m (11.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddActivatedToUsers (20180403110338)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "activated" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180403110338"]]
+  [1m[35m (12.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCodeToUsers (20180403110448)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "users" ADD "code" varchar DEFAULT '' NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180403110448"]]
+  [1m[35m (13.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUsernameToUsers (20180403110536)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "users" ADD "username" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180403110536"]]
+  [1m[35m (14.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-04 17:56:46.114140"], ["updated_at", "2018-04-04 17:56:46.114140"]]
+  [1m[35m (13.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_username' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_username' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:58:07 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant UsersController::Password):
+  
+app/controllers/users_controller.rb:31:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:58:44 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 179ms
+
+
+  
+NameError (undefined local variable or method `password' for #<UsersController:0x0000000002b57c80>):
+  
+app/controllers/users_controller.rb:31:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 17:59:24 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `save?' for #<User:0x00000000038aae50>
+Did you mean?  save
+               save!):
+  
+app/controllers/users_controller.rb:34:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:02:25 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-04-04 18:02:25.940813"], ["updated_at", "2018-04-04 18:02:25.940813"], ["email", "juan.lopez@gmail.com"], ["password", "$2a$10$NHu2u8dKqxEF4aSyvYI.r.IfDYuedGKijuw3q7H2vyJuiCjGRR67W"], ["code", "1b8d5098"], ["username", "aaaaaa0"]]
+  [1m[35m (14.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 105ms (Views: 2.2ms | ActiveRecord: 16.4ms)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:04:18 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-04-04 18:04:18.600950"], ["updated_at", "2018-04-04 18:04:18.600950"], ["email", "juan.lopez@gmail.com"], ["password", "$2a$10$VJWL292z155RQLhlX2Unmu3CieEVjM5SuH1iY/bKhmypBBteFEe.a"], ["code", "74709555"], ["username", "aaaaaa0"]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 1.1ms)
+
+
+  
+ActiveRecord::RecordNotUnique (SQLite3::ConstraintException: UNIQUE constraint failed: users.username: INSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)):
+  
+app/controllers/users_controller.rb:34:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:05:14 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-04-04 18:05:15.129073"], ["updated_at", "2018-04-04 18:05:15.129073"], ["email", "juan.lopez@gmail.com"], ["password", "$2a$10$qk.usSibwLdsRAbH40ITu.eWjB0Nkd7twDHfVLgJmlvgHDIsGmlBa"], ["code", "aae97b17"], ["username", "aaaaaa0"]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 3.7ms)
+
+
+  
+ActiveRecord::RecordNotUnique (SQLite3::ConstraintException: UNIQUE constraint failed: users.username: INSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)):
+  
+app/controllers/users_controller.rb:34:in `register'
+Started GET "/register?username=aaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:10:17 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 2ms (Views: 1.2ms)
+
+
+Started GET "/register?username=aaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:12:09 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 50ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:13:32 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:13:38 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 96ms (ActiveRecord: 1.9ms)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Username has already been taken, Email has already been taken):
+  
+app/controllers/users_controller.rb:34:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:13:53 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 91ms (Views: 0.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:14:09 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 87ms (ActiveRecord: 2.0ms)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Username has already been taken, Email has already been taken):
+  
+app/controllers/users_controller.rb:34:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:15:22 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 75ms
+
+
+  
+ArgumentError (Unknown validator: 'MessageValidator'):
+  
+app/models/user.rb:4:in `<class:User>'
+app/models/user.rb:1:in `<top (required)>'
+app/controllers/users_controller.rb:33:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:16:03 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 71ms
+
+
+  
+SyntaxError (/home/ubuntu/workspace/app/models/user.rb:4: syntax error, unexpected '}', expecting =>
+...queness: { "Usuario repetido" }
+...                              ^):
+  
+app/models/user.rb:4: syntax error, unexpected '}', expecting =>
+app/controllers/users_controller.rb:33:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:17:12 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 85ms (ActiveRecord: 1.7ms)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Username has already been taken, Email has already been taken):
+  
+app/controllers/users_controller.rb:34:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:17:20 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 92ms (Views: 1.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:17:38 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 400 Bad Request in 89ms (Views: 0.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:18:26 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 400 Bad Request in 74ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:19:33 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 71ms
+
+
+  
+SyntaxError (/home/ubuntu/workspace/app/models/user.rb:6: syntax error, unexpected '}', expecting =>
+...rname has already been taken" }
+...                              ^
+/home/ubuntu/workspace/app/models/user.rb:7: syntax error, unexpected '}', expecting =>
+...email has already been taken" }
+...                              ^):
+  
+app/models/user.rb:6: syntax error, unexpected '}', expecting =>
+app/models/user.rb:7: syntax error, unexpected '}', expecting =>
+app/controllers/users_controller.rb:33:in `register'
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:20:04 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 400 Bad Request in 86ms (Views: 0.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:20:36 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 86ms (Views: 1.0ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:21:08 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering html template
+  Rendered html template (0.1ms)
+Completed 200 OK in 96ms (Views: 1.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:23:56 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+Completed 200 OK in 103ms (Views: 0.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:29:05 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 200 OK in 112ms (Views: 0.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/register?username=aaaaaa0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:30:21 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"aaaaaa0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "aaaaaa0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 409 Conflict in 164ms (Views: 0.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/register?username=bbbbb0&email=juan.lopez@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:30:56 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"bbbbb0", "email"=>"juan.lopez@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "bbbbb0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "juan.lopez@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 409 Conflict in 74ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/register?username=bbbbb0&email=alexandre.calle@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:31:09 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"bbbbb0", "email"=>"alexandre.calle@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "bbbbb0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "alexandre.calle@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-04-04 18:31:09.518098"], ["updated_at", "2018-04-04 18:31:09.518098"], ["email", "alexandre.calle@gmail.com"], ["password", "$2a$10$yn.hwwmUqIc9ccsTqpbiSuDDlPOqLU9OOfLkVIdZ0Ol3DmD5uRgP2"], ["code", "d5de006f"], ["username", "bbbbb0"]]
+  [1m[35m (122.3ms)[0m  [1m[36mcommit transaction[0m
+Completed 201 Created in 199ms (Views: 0.3ms | ActiveRecord: 124.1ms)
+
+
+Started GET "/register?username=bbbbb0&email=alexandre.calle@gmail.com&password=[FILTERED]" for 62.83.208.103 at 2018-04-04 18:31:13 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as HTML
+  Parameters: {"username"=>"bbbbb0", "email"=>"alexandre.calle@gmail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "bbbbb0"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "alexandre.calle@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 409 Conflict in 75ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]

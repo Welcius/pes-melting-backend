@@ -9,6 +9,11 @@ gem 'jquery-rails', '4.3.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 
+# gems afegides
+gem 'email_address', '~> 0.1.8'
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+# fi gems afegides
+
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
