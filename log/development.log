@@ -1877,3 +1877,220 @@ Processing by UsersController#activate as */*
 Completed 409 Conflict in 13ms (Views: 0.3ms | ActiveRecord: 1.4ms)
 
 
+UserMailer#activation_email: processed outbound mail in 8.9ms
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (4.5ms)
+UserMailer#activation_email: processed outbound mail in 284.7ms
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (0.1ms)
+UserMailer#activation_email: processed outbound mail in 11.8ms
+Sent mail to alex.cmillan@outlook.com (1135.4ms)
+Date: Fri, 06 Apr 2018 15:26:09 +0000
+From: melting.app@gmail.com
+To: alex.cmillan@outlook.com
+Message-ID: <5ac791911aa5_11fc53465c26889@acami-projecte-pes-6009113.mail>
+Subject: Please, activate your account
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Hello  alex.cmillan,
+
+Your activation code is aaaaa
+
+Thanks for joining and have a great day!
+
+Melting App Team
+  </body>
+</html>
+
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (1.9ms)
+UserMailer#activation_email: processed outbound mail in 12.0ms
+Sent mail to alex.cmillan@outlook.com (800.1ms)
+Date: Fri, 06 Apr 2018 15:28:38 +0000
+From: melting.app@gmail.com
+To: alex.cmillan@outlook.com
+Message-ID: <5ac79226ebc50_11fc53465c26992@acami-projecte-pes-6009113.mail>
+Subject: Please, activate your account
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Hello  alex.cmillan,
+<br>
+<br>
+Your activation code is aaaaa
+<br>
+<br>
+Thanks for joining and have a great day!
+<br>
+<br>
+Melting App Team
+  </body>
+</html>
+
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (1.3ms)
+UserMailer#activation_email: processed outbound mail in 235.8ms
+Sent mail to alex.cmillan@outlook.com (1094.9ms)
+Date: Fri, 06 Apr 2018 15:31:52 +0000
+From: melting.app@gmail.com
+To: alex.cmillan@outlook.com
+Message-ID: <5ac792e818ede_122c53465c459@acami-projecte-pes-6009113.mail>
+Subject: Please, activate your account
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Hello  alex.cmillan,
+<br>
+<br>
+Your activation code is bbbb
+<br>
+<br>
+Thanks for joining and have a great day!
+<br>
+<br>
+Melting App Team
+  </body>
+</html>
+
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (0.1ms)
+UserMailer#activation_email: processed outbound mail in 10.6ms
+Sent mail to alex.cmillan@outlook.com (826.0ms)
+Date: Fri, 06 Apr 2018 15:36:08 +0000
+From: melting.app@gmail.com
+To: alex.cmillan@outlook.com
+Message-ID: <5ac793e8606fe_122c53465c460@acami-projecte-pes-6009113.mail>
+Subject: Please, activate your account
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Hello  alex.cmillan,
+<br>
+<br>
+Your activation code is bbbb
+<br>
+<br>
+Thanks for joining and have a great day!
+<br>
+<br>
+Melting App Team
+  </body>
+</html>
+
+Started POST "/register" for 62.83.208.103 at 2018-04-06 15:38:56 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as */*
+  Parameters: {"email"=>"alex.cmillan@outlook.com", "username"=>"alex.cmillan", "password"=>"[FILTERED]"}
+Completed 400 Bad Request in 16ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/register" for 62.83.208.103 at 2018-04-06 15:39:11 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as */*
+  Parameters: {"email"=>"alex.cmillan@outlook.com", "username"=>"alexcmillan", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "alexcmillan"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "alex.cmillan@outlook.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "password", "code", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-04-06 15:39:11.891990"], ["updated_at", "2018-04-06 15:39:11.891990"], ["email", "alex.cmillan@outlook.com"], ["password", "$2a$10$lDLPCRKcKtx7UYQIh8413Oq9DyyPrd64s8FsjUEqtZiIQJspA5itW"], ["code", "5a289a98"], ["username", "alexcmillan"]]
+  [1m[35m (51.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (1.1ms)
+UserMailer#activation_email: processed outbound mail in 234.4ms
+Sent mail to alex.cmillan@outlook.com (936.5ms)
+Date: Fri, 06 Apr 2018 15:39:12 +0000
+From: melting.app@gmail.com
+To: alex.cmillan@outlook.com
+Message-ID: <5ac794a058243_e251eade802252f@acami-projecte-pes-6009113.mail>
+Subject: Please, activate your account
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Hello  alexcmillan,
+<br>
+<br>
+Your activation code is 5a289a98
+<br>
+<br>
+Thanks for joining and have a great day!
+<br>
+<br>
+Melting App Team
+  </body>
+</html>
+
+Completed 201 Created in 1489ms (Views: 0.4ms | ActiveRecord: 53.6ms)
+
+
+Started POST "/register" for 62.83.208.103 at 2018-04-06 15:39:36 +0000
+Cannot render console from 62.83.208.103! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#register as */*
+  Parameters: {"email"=>"alex.cmillan@outlook.com", "username"=>"alexcmillan", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "alexcmillan"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "alex.cmillan@outlook.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 409 Conflict in 83ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+

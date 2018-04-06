@@ -2,11 +2,11 @@ module UsersHelper
     require 'rubygems'
     require 'email_address'
     
-    MIN_USER_LENGTH = 6
-    MAX_USER_LENGTH = 32
+    MIN_USER_LENGTH = 3
+    MAX_USER_LENGTH = 20
     
     MIN_PASSWORD_LENGTH = 8
-    MAX_PASSWORD_LENGTH = 32
+    MAX_PASSWORD_LENGTH = 64
     
     def checkRegisterFields?(email, username, password)
         if not email.nil? and not username.nil? and not password.nil?
@@ -40,6 +40,7 @@ class UsersController < ApplicationController
                 code = SecureRandom.hex[0..7]
                 newuser = User.new(:email => params[:email].downcase, :username => params[:username], :password => encrypted_pwd, :code => code)
                 if newuser.save
+                    UserMailer.activation_email(params[:email], params[:username], code).deliver_now
                     sendStatus("User has been created correctly: please confirm your email", :created)
                 else
                     sendStatus("User could not be created", :conflict, newuser.errors)
