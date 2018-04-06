@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20180403110536) do
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
     t.string "password", default: "", null: false
-    t.string "salt", default: "", null: false
     t.boolean "activated", default: false, null: false
     t.string "code", default: "", null: false
     t.string "username", default: "", null: false
