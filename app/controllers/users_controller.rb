@@ -18,6 +18,14 @@ module UsersHelper
         end
         return false
     end
+    
+    def sendStatus(message, status, errors=nil)
+        if errors.nil?
+            render json: { :message => message }, :status => status
+        else
+            render json: { :message => message, :errors => errors }, :status => status
+        end
+    end
 end
 
 class UsersController < ApplicationController
@@ -32,15 +40,41 @@ class UsersController < ApplicationController
                 code = SecureRandom.hex[0..7]
                 newuser = User.new(:email => params[:email].downcase, :username => params[:username], :password => encrypted_pwd, :code => code)
                 if newuser.save
-                    render json: { message: "User has been created correctly: please confirm your email." }, :status => :created
+                    sendStatus("User has been created correctly: please confirm your email", :created)
                 else
-                    render json: { message: "The user could not be created.", errors: newuser.errors }, :status => :conflict
+                    sendStatus("User could not be created", :conflict, newuser.errors)
                 end
             else
-                render json: { message: "The fields don't meet the appropiate requirements." }, :status => :bad_request
+                sendStatus("Fields don't meet the appropiate requirements", :bad_request)
             end
         else
-            render json: { message: "There are missing fields." }, :status => :bad_request
+            sendStatus("Missing fields", :bad_request)
+        end
+    end
+    
+    def activate
+        if params.has_key?(:email) and params.has_key?(:code)
+            user = User.find_by_email(params[:email].downcase)
+            if not user.nil?
+                if user.code == params[:code]
+                    if user.activated
+                        sendStatus("User is already activated", :conflict)
+                    else
+                        user.activated = true
+                        if user.save
+                            sendStatus("User has been activated", :ok)
+                        else
+                            sendStatus("User could not be activated", :internal_server_error)
+                        end
+                    end
+                else
+                    sendStatus("Mail and/or the code are not correct", :unauthorized)
+                end
+            else
+                sendStatus("Mail and/or the code are not correct", :unauthorized)
+            end
+        else
+            sendStatus("Missing fields", :bad_request)
         end
     end
 end
