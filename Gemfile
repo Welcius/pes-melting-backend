@@ -12,6 +12,7 @@ gem 'jbuilder',     '2.7.0'
 # gems afegides
 gem 'email_address', '~> 0.1.8'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+gem 'knock'
 # fi gems afegides
 
 group :development, :test do

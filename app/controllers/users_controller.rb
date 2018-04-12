@@ -29,6 +29,7 @@ module UsersHelper
 end
 
 class UsersController < ApplicationController
+    before_action :authenticate_user, :except => [:register, :activate]
     include UsersHelper
     require 'securerandom'
     require 'bcrypt'
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
             if checkRegisterFields?(params[:email], params[:username], params[:password])
                 encrypted_pwd = BCrypt::Password.create(params[:password])
                 code = SecureRandom.hex[0..7]
-                newuser = User.new(:email => params[:email].downcase, :username => params[:username], :password => encrypted_pwd, :code => code)
+                newuser = User.new(:email => params[:email].downcase, :username => params[:username], :password_digest => encrypted_pwd, :code => code)
                 if newuser.save
                     UserMailer.activation_email(params[:email], params[:username], code).deliver_now
                     sendStatus("User has been created correctly: please confirm your email", :created)
