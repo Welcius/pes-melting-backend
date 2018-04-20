@@ -10,10 +10,14 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 
 # gems afegides
-gem 'email_address', '~> 0.1.8'
-gem 'bcrypt', '~> 3.1', '>= 3.1.11'
-gem 'knock'
-gem 'countries'
+gem 'email_address', '~> 0.1.8'       # validació de correus electrònics
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'   # hashing de contrassenyes
+gem 'knock'                           # tokens de login
+gem 'countries'                       # validació de països
+gem 'shrine'                          # inclusió de fitxers als models (...)
+gem 'fastimage'                       # dependències de shrine
+gem 'image_processing'                # dependències de shrine
+gem 'mini_magick'                     # dependències de shrine
 # fi gems afegides
 
 group :development, :test do
