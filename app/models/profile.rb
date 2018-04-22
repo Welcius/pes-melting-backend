@@ -1,6 +1,7 @@
 require 'countries'
 
 class Profile < ApplicationRecord
+    belongs_to :user
     has_one :avatar, dependent: :destroy
     
     # Comprova que el codi de païs compleixi amb l'estàndar ISO3166

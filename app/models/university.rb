@@ -1,0 +1,2 @@
+class University < Location
+end

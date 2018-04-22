@@ -18,6 +18,7 @@ gem 'shrine'                          # inclusió de fitxers als models (...)
 gem 'fastimage'                       # dependències de shrine
 gem 'image_processing'                # dependències de shrine
 gem 'mini_magick'                     # dependències de shrine
+gem 'geocoder'                        # informació d'ubicació geogràfica
 # fi gems afegides
 
 group :development, :test do
