@@ -6,4 +6,7 @@ Rails.application.routes.draw do
     post 'activate', to: 'users#activate'
     post 'login' => 'user_token#create'
   end
+  
+  get '/users/:user_id/profile', to: 'profiles#show'
+  put '/users/:user_id/profile', to: 'profiles#update'
 end

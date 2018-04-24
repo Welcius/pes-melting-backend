@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422004930) do
+ActiveRecord::Schema.define(version: 20180424011352) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20180422004930) do
     t.index ["profile_id"], name: "index_avatars_on_profile_id"
   end
 
+  create_table "faculties", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,6 +32,9 @@ ActiveRecord::Schema.define(version: 20180422004930) do
     t.float "longitude"
     t.string "address"
     t.string "name"
+    t.string "type"
+    t.integer "university_id"
+    t.index ["university_id"], name: "index_locations_on_university_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -34,10 +42,17 @@ ActiveRecord::Schema.define(version: 20180422004930) do
     t.datetime "updated_at", null: false
     t.string "full_name"
     t.text "biography"
-    t.integer "karma"
+    t.integer "karma", default: 0
     t.string "country_code"
     t.integer "user_id"
+    t.integer "faculty_id"
+    t.index ["faculty_id"], name: "index_profiles_on_faculty_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
