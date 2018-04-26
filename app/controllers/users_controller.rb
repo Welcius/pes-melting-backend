@@ -18,19 +18,12 @@ module UsersHelper
         end
         return false
     end
-    
-    def sendStatus(message, status, errors=nil)
-        if errors.nil?
-            render json: { :message => message }, :status => status
-        else
-            render json: { :message => message, :errors => errors }, :status => status
-        end
-    end
 end
 
 class UsersController < ApplicationController
     before_action :authenticate_user, :except => [:register, :activate]
     include UsersHelper
+    include UtilsModule
     require 'securerandom'
     require 'bcrypt'
     

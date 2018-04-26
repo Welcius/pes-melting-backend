@@ -1,3 +1,5 @@
+require "image_processing/mini_magick"
+
 class ImageUploader < Shrine
   include ImageProcessing::MiniMagick
 
@@ -17,8 +19,8 @@ class ImageUploader < Shrine
   def process(io, context)
     case context[:phase]
       when :store
-        thumb = resize_to_limit!(io.download, 300, 300)
+        thumb = ImageProcessing::MiniMagick.source(io.download).resize_to_limit!(300, 300)
         { original: io, thumb: thumb }
-      end
+    end
   end
 end

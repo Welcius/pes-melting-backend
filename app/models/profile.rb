@@ -6,7 +6,9 @@ class Profile < ApplicationRecord
     belongs_to :faculty
     
     # Comprova que el codi de païs compleixi amb l'estàndar ISO3166
+    validates_presence_of :full_name
     validates :country_code, :inclusion => { in: ISO3166::Country.all.map {|c| c.alpha2}, :message => 'Country code must be ISO3166-compliant' }
+    validates_presence_of :faculty_id
     
     def country
        ISO3166::Country.find_country_by_alpha2(:country_code).name

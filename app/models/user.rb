@@ -10,7 +10,7 @@ class User < ApplicationRecord
     def to_token_payload
         {sub: id, role: role}
     end
-    def self.from_token_request request
+    def from_token_request request
         email = request.params["email"]
         if not email.nil?
             user = User.find_by_email(email)

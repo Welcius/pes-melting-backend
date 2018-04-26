@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   end
   
   get '/users/:user_id/profile', to: 'profiles#show'
+  post '/users/:user_id/profile', to: 'profiles#create'
   put '/users/:user_id/profile', to: 'profiles#update'
+  
+  post '/users/:user_id/profile/avatar', to: 'profiles#set_avatar'
 end
