@@ -1,5 +1,13 @@
+module ProfilesHelper
+   def same_user_as_current(user_id)
+      return user_id == current_user.id 
+   end
+end
+
 class ProfilesController < ApplicationController
+    include ProfilesHelper
     include UtilsModule
+    
     before_action :authenticate_user
     
     def show
@@ -13,25 +21,24 @@ class ProfilesController < ApplicationController
                 if user.profile.nil?
                     sendStatus("Profile not created yet", :not_found)
                 else
-                    # TODO: manera cutre per a provar
-                    render json: { profile: user.profile.as_json(:except => [:id, :created_at, :updated_at]) }
+                    render json: user.profile
                 end
             end
         end
     end
     
     def create
-        user = User.find_by_id(profile_params[:user_id])
+        user = User.find_by_id(params[:user_id])
         if user.nil?
             sendStatus("User does not exist", :not_found)
         else
-            if current_user.id != profile_params[:user_id].to_i
+            if not same_user_as_current(params[:user_id])
                 sendStatus("You don't have permission to create that user profile", :unauthorized);
             else
                if user.profile.nil?
                    p = Profile.create(profile_params)
                    if p.save
-                       sendStatus("Profile created", :ok)
+                       render json: p
                    else
                        sendStatus("Error creating profile", :conflict, p.errors)
                    end
@@ -43,11 +50,11 @@ class ProfilesController < ApplicationController
     end
     
     def update
-        user = User.find_by_id(profile_params[:user_id])
+        user = User.find_by_id(params[:user_id])
         if user.nil?
             sendStatus("User does not exist", :not_found)
         else
-            if current_user.id != profile_params[:user_id].to_i
+            if not same_user_as_current(params[:user_id].to_i)
                 sendStatus("You don't have permission to modify that user profile", :unauthorized);
             else
                if user.profile.nil?
@@ -56,7 +63,7 @@ class ProfilesController < ApplicationController
                    p = user.profile
                    p.update(profile_params)
                    if p.save
-                       sendStatus("Profile modified", :ok)
+                       render json: p
                    else
                        sendStatus("Error modifying profile", :conflict, p.errors)
                    end
@@ -66,19 +73,24 @@ class ProfilesController < ApplicationController
     end
     
     def set_avatar
-        if current_user.id != params[:user_id].to_i
+        if not same_user_as_current(params[:user_id].to_i)
             sendStatus("You don't have permission to modify that user profile", :unauthorized);
         else
             img = params[:profile][:avatar]
             f = File.open(img.path())
             uploader = ImageUploader.new(:store)
             shrine_file = uploader.upload(f)
-            profile = User.find_by_id(current_user.id).profile
-            if profile.avatar.nil?
-                profile.avatar = Avatar.create()
+            f.close()
+            p = User.find_by_id(current_user.id).profile
+            if p.avatar.nil? then p.avatar = Avatar.create() end
+            p.avatar.update(:image => shrine_file)
+            if p.avatar.valid? 
+                sendStatus("Avatar updated successfully", :ok)
+            else
+                sendStatus("Invalid avatar", :bad_request, p.avatar.errors)
+                File.delete(img.path()) if File.exist?(img.path())
+                uploader.delete(shrine_file)
             end
-            profile.avatar.update(:image => shrine_file)
-            profile.save
         end
     end
     

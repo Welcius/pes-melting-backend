@@ -12,8 +12,8 @@ class ImageUploader < Shrine
   plugin :versions, names: [:original, :thumb]
 
   Attacher.validate do
-    validate_max_size 2.megabytes, message: 'is too large (max is 2 MB)'
-    validate_mime_type_inclusion ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+    validate_max_size 5.megabytes, message: 'is too large (max is 5 MB)'
+    validate_mime_type_inclusion ['image/jpg', 'image/jpeg', 'image/png']
   end
 
   def process(io, context)

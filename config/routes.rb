@@ -7,9 +7,12 @@ Rails.application.routes.draw do
     post 'login' => 'user_token#create'
   end
   
-  get '/users/:user_id/profile', to: 'profiles#show'
-  post '/users/:user_id/profile', to: 'profiles#create'
-  put '/users/:user_id/profile', to: 'profiles#update'
-  
-  post '/users/:user_id/profile/avatar', to: 'profiles#set_avatar'
+  scope 'users' do
+    scope ':user_id' do
+      get 'profile', to: 'profiles#show'
+      post 'profile', to: 'profiles#create'
+      put 'profile', to: 'profiles#update'
+      post 'profile/avatar', to: 'profiles#set_avatar'
+    end
+  end
 end
