@@ -1,42 +1,41 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :authenticate_user
 
-  # GET /comments
-  # GET /comments.json
   def index
     @comments = Comment.all
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
+
   def show
   end
 
-  # POST /comments
-  # POST /comments.json
+
   def create
     @comment = Comment.new(comment_params)
-
-    if @comment.save
+    @comment.user_id = current_user.id
+    if @comment.save and !@comment.content.nil?
       render :show, status: :created, location: @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
-  def update
-    if @comment.update(comment_params)
-      render :show, status: :ok, location: @comment
-    else
+
+  def update 
+    if @comment.user_id != current_user
+    else 
+      if @comment.update(comment_params) and !@comment.content.nil?
+        render :show, status: :ok, location: @comment
+      else
       render json: @comment.errors, status: :unprocessable_entity
+      end
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
+    if @comment.user_id != current_user
+    end
     @comment.destroy
   end
 
