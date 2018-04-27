@@ -20,11 +20,6 @@ ActiveRecord::Schema.define(version: 20180426073709) do
     t.index ["profile_id"], name: "index_avatars_on_profile_id"
   end
 
-  create_table "faculties", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,11 +45,6 @@ ActiveRecord::Schema.define(version: 20180426073709) do
     t.index ["avatar_id"], name: "index_profiles_on_avatar_id"
     t.index ["faculty_id"], name: "index_profiles_on_faculty_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
-  create_table "universities", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
