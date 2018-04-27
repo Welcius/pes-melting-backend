@@ -15,4 +15,9 @@ Rails.application.routes.draw do
       post 'profile/avatar', to: 'profiles#set_avatar'
     end
   end
+  
+  scope 'locations' do
+    get 'universities', to: 'locations#index', defaults: {type: 'University'}
+    get 'universities/:university_id/faculties', to: 'locations#index', defaults: {type: 'Faculty'}
+  end
 end

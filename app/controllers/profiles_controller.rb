@@ -11,18 +11,14 @@ class ProfilesController < ApplicationController
     before_action :authenticate_user
     
     def show
-        if params[:user_id].nil? or params[:user_id].to_i <= 0
-            sendStatus("Invalid user id", :bad_request)
+        user = User.find_by_id(params[:user_id])
+        if user.nil?
+            sendStatus("User does not exist", :not_found)
         else
-            user = User.find_by_id(params[:user_id])
-            if user.nil?
-                sendStatus("User does not exist", :not_found)
+            if user.profile.nil?
+                sendStatus("Profile not created yet", :not_found)
             else
-                if user.profile.nil?
-                    sendStatus("Profile not created yet", :not_found)
-                else
-                    render json: user.profile
-                end
+                render json: user.profile
             end
         end
     end
