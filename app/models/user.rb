@@ -4,8 +4,8 @@ class User < ApplicationRecord
     
     validates_presence_of :code, :username, :email
     
-    validates :username, uniqueness: {message: "That username has already been taken" }
-    validates :email, uniqueness: {message: "That email has already been taken" }
+    validates :username, uniqueness: {message: "has already been taken" }
+    validates :email, uniqueness: {message: "has already been taken" }
     
     def to_token_payload
         {sub: id, role: role}

@@ -28,11 +28,11 @@ class ProfilesController < ApplicationController
         if user.nil?
             sendStatus("User does not exist", :not_found)
         else
-            if not same_user_as_current(params[:user_id])
+            if not same_user_as_current(params[:user_id].to_i)
                 sendStatus("You don't have permission to create that user profile", :unauthorized);
             else
                if user.profile.nil?
-                   p = Profile.create(profile_params)
+                   p = Profile.new(profile_params)
                    if p.save
                        render json: p
                    else
@@ -51,14 +51,15 @@ class ProfilesController < ApplicationController
             sendStatus("User does not exist", :not_found)
         else
             if not same_user_as_current(params[:user_id].to_i)
-                sendStatus("You don't have permission to modify that user profile", :unauthorized);
+                sendStatus("You don't have permission to modify that user profile", :unauthorized)
             else
                if user.profile.nil?
                    sendStatus("Profile does not exist", :not_found)
                else
                    p = user.profile
                    p.update(profile_params)
-                   if p.save
+                   if p.update(profile_params)
+                       puts p.faculty_id
                        render json: p
                    else
                        sendStatus("Error modifying profile", :conflict, p.errors)
@@ -93,6 +94,6 @@ class ProfilesController < ApplicationController
     private
 
     def profile_params
-        params.require(:profile).permit(:user_id, :faculty_id, :full_name, :country_code, :biography, :avatar)
+        params.permit(:user_id, :faculty_id, :full_name, :country_code, :biography, :avatar)
     end
 end
