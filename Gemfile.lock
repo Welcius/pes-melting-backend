@@ -119,6 +119,7 @@ GEM
     pg (0.20.0)
     puma (3.9.1)
     rack (2.0.4)
+    rack-cors (1.0.2)
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -229,6 +230,7 @@ DEPENDENCIES
   mini_magick
   pg (= 0.20.0)
   puma (= 3.9.1)
+  rack-cors
   rails (= 5.1.4)
   rails-erd
   sass-rails (= 5.0.6)
