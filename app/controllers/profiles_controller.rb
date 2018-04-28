@@ -34,7 +34,7 @@ class ProfilesController < ApplicationController
                if user.profile.nil?
                    p = Profile.new(profile_params)
                    if p.save
-                       render json: p
+                       render json: p, status: :created
                    else
                        sendStatus("Error creating profile", :conflict, p.errors)
                    end
@@ -59,7 +59,6 @@ class ProfilesController < ApplicationController
                    p = user.profile
                    p.update(profile_params)
                    if p.update(profile_params)
-                       puts p.faculty_id
                        render json: p
                    else
                        sendStatus("Error modifying profile", :conflict, p.errors)
