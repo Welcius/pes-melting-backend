@@ -1,0 +1,370 @@
+swagger: '2.0'
+info:
+  title: Melting App API
+  description: API for the Melting App
+  version: 1.0.0
+host: melting-app.herokuapp.com
+tags:
+- name: auth
+  description: Auth related endpoints
+- name: user
+  description: User related endpoints
+- name: location
+  description: Location related endpoints
+schemes:
+- https
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: formData
+          required: true
+          type: string
+          
+        - name: email
+          in: formData
+          required: true
+          type: string
+          format: email
+          
+        - name: password
+          in: formData
+          required: true
+          type: string
+          format: password
+          
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Missing fields / Input fields do not satisfy the appropiate requirements
+        '409':
+          description: User already exists
+  
+  /auth/activate:
+    post:
+      tags:
+        - auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: formData
+          required: true
+          type: string
+          format: email
+          
+        - name: code
+          in: formData
+          required: true
+          type: string
+
+      responses:
+        '200':
+          description: User has been activated
+        '400':
+          description: Missing fields
+        '401':
+          description: Mail and/or the code are not correct
+        '409':
+          description: User is already activated
+          
+  /auth/login:
+    post:
+      tags:
+        - auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: formData
+          required: true
+          type: string
+          format: email
+        
+        - name: password
+          in: formData
+          required: true
+          type: string
+          format: password
+        
+      responses:
+        '201':
+          description: Login successful
+          schema:
+            $ref: '#/definitions/StatusResponse'
+          examples:
+            application/json:
+              jwt: YOUR_JWT_TOKEN
+        '404':
+          description: Incorrect email and/or password
+          
+  /users/{user_id}/profile:
+    get:
+      tags: 
+        - user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: Shows profile
+          schema:
+            $ref: '#/definitions/Profile'
+        '401':
+          description: Not logged in
+        '404':
+          description: User doesn't exist / Profile not created yet
+      security:
+        - JWT: []
+    put:
+      tags:
+        - user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: profile
+          in: body
+          description: The modified profile
+          schema:
+            type: object
+            required:
+              - full_name
+              - country_code
+              - faculty_id
+            properties:
+              full_name:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              faculty_id:
+                type: integer
+                minimum: 1
+              biography:
+                type: string
+            example:
+              full_name: Alex Calle Millan
+              country_code: ES
+              faculty_id: 2
+      responses:
+        '200':
+          description: Profile modified successfully
+          schema:
+            $ref: '#/definitions/Profile'
+        '401':
+          description: You don't have permission to modify that user profile / Not logged in
+        '404':
+          description: Profile does not exist
+        '409':
+          description: Error modifying profile
+      security:
+        - JWT: []
+        
+  /users/{user_id}/profile/avatar:
+    post:
+      tags:
+       - user
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+          
+        - name: profile[avatar]
+          in: formData
+          type: file
+          description: The new avatar image
+          
+      responses:
+        '200':
+          description: Avatar updated successfully
+        '400':
+          description: Invalid avatar
+        '401':
+          description: You don't have permission to modify that user profile / Not logged in
+      security:
+        - JWT: []
+        
+  /locations/universities:
+    get:
+      tags: 
+        - location
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: List displayed correctly
+          schema:
+            $ref: '#/definitions/ArrayOfUniversities'
+        '401':
+          description: Not logged in
+      security:
+        - JWT: []
+  
+  /locations/universities/{university_id}/faculties:
+    get:
+      tags: 
+        - location
+      produces:
+        - application/json
+      parameters:
+        - name: university_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: List displayed correctly
+          schema:
+            $ref: '#/definitions/ArrayOfFaculties'
+        '401':
+          description: Not logged in
+        '404':
+          description: University doesn't exist
+      security:
+        - JWT: []
+        
+securityDefinitions:
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
+    
+definitions:
+  StatusResponse:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+      errors:
+        type: array
+        items:
+          type: array
+          items:
+            type: string
+    example:
+      application/json:
+        message: Error modifying profile
+  Profile:
+    type: object
+    required:
+      - user_id, full_name, biography, karma, country_code, university, university_id, faculty, faculty_id, avatarURL
+    properties:
+      user_id:
+        type: integer
+        minimum: 1
+      full_name:
+        type: string
+      biography:
+        type: string
+      karma:
+        type: integer
+      country_code:
+        type: string
+      university:
+        type: string
+      university_id:
+        type: integer
+        minimum: 1
+      faculty:
+        type: string
+      faculty_id:
+        type: integer
+        minimum: 1
+      avatarURL:
+        type: string
+    example:
+      user_id: 1
+      full_name: Alex Calle Millan
+      biography: I like memes
+      karma: 0
+      country_code: ES
+      university: Universitat Politècnica de Catalunya
+      university_id: 1
+      faculty: Facultat d'Informàtica de Barcelona
+      faculty_id: 2
+      avatarURL: /uploads/store/e6008535fefa27266fe80db3ecf07a2a.jpg
+      
+  Location:
+    type: object
+    required:
+      - location_id, name, address, latitude, longitude
+    properties:
+      location_id:
+        type: integer
+        minimum: 1
+      name:
+        type: string
+      address:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+        
+  ArrayOfUniversities:
+    type: array
+    items:
+      $ref: '#/definitions/Location'
+    example:
+    - location_id: 1
+      name: Universitat Politècnica de Catalunya
+      address: Carrer de Jordi Girona, 26, 08034 Barcelona, Spain
+      latitude: 41.3880816726885
+      longitude: 2.11546764026158
+    - location_id: 4
+      name: Universitat de Barcelona
+      address: Gran Via de les Corts Catalanes, 596, 08007 Barcelona, Spain
+      latitude: 41.3868156029942
+      longitude: 2.16481325453837
+  
+  ArrayOfFaculties:
+    type: array
+    items:
+      $ref: '#/definitions/Location'
+    example:
+    - location_id: 2
+      name: Facultat d' Informàtica de Barcelona
+      address: carrer de John Maynard Keynes, 27-35, 08034 Barcelona, Spain
+      latitude: 41.3894841
+      longitude: 2.11338590000003
+    - location_id: 3
+      name: Escola Tècnica Superior d'Enginyeria Industrial de Barcelona
+      address: Avinguda Diagonal, 647, 08028 Barcelona, Spain
+      latitude: 41.3847924
+      longitude: 2.11563799999999
