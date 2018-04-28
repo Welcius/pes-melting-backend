@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+upc = University.create(:name => 'Universitat Politècnica de Catalunya', :latitude => 41.38808167268847, :longitude => 2.115467640261582)
+fib = Faculty.create(:name => 'Facultat d\' Informàtica de Barcelona', :latitude => 41.3894841, :longitude => 2.1133859000000257, :university => upc)
+etseib = Faculty.create(:name => 'Escola Tècnica Superior d\'Enginyeria Industrial de Barcelona', :latitude => 41.38479239999999, :longitude => 2.11563799999999, :university => upc)
+
+ub = University.create(:name => 'Universitat de Barcelona', :latitude => 41.386815602994155, :longitude => 2.164813254538371)
+ubquim = Faculty.create(:name => 'Facultat de Química', :latitude => 41.3852079, :longitude => 2.1177860999999893, :university => ub)
+ubfis = Faculty.create(:name => 'Facultat de Física', :latitude => 41.3844004, :longitude => 2.1171888999999737, :university => ub)

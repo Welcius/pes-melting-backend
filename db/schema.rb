@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412090458) do
+ActiveRecord::Schema.define(version: 20180426073709) do
+
+  create_table "avatars", force: :cascade do |t|
+    t.integer "profile_id"
+    t.string "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_avatars_on_profile_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
+    t.string "name"
+    t.string "type"
+    t.integer "university_id"
+    t.index ["university_id"], name: "index_locations_on_university_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "full_name"
+    t.text "biography"
+    t.integer "karma", default: 0
+    t.string "country_code"
+    t.integer "user_id"
+    t.integer "faculty_id"
+    t.integer "avatar_id"
+    t.index ["avatar_id"], name: "index_profiles_on_avatar_id"
+    t.index ["faculty_id"], name: "index_profiles_on_faculty_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
