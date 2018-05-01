@@ -1,36 +1,46 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :update, :destroy]
+  before_action :authenticate_user
 
 
   def index
-    @votes = Vote.all
+    @event = Event.find(params[:event_id])
+    @votes = @event.votes.count
   end
 
 
   def show
   end
 
+  def new
+    @votes = Vote.new
+    @votes.user = current_user
+    @votes.event = Event.find(params[:event_id])
+  end
+
   def create
-    @vote = Vote.new(vote_params)
-    @vote.user_id = current_user
-    if @vote.save
-      render :show, status: :created, location: @vote
+    @votes = Vote.new(vote_params)
+    @votes.user = current_user
+    @votes.event = Event.find(params[:event_id])
+    if @votes.save
+      render json: @votes, status: :created  
     else
-      render json: @vote.errors, status: :unprocessable_entity
+      sendStatus("Error creating event", :conflict, @votes.errors)  
     end
   end
 
 
   def update
     if @vote.update(vote_params) and @vote.user_id != current_user
-      render :show, status: :ok, location: @vote
+      render json: @vote
     else
-      render json: @vote.errors, status: :unprocessable_entity
+      sendStatus("Error modifying vote", :conflict, @vote.errors)   
     end
   end
 
   def destroy
     @vote.destroy
+    render json: @vote, status: :destroy   
   end
 
   private
