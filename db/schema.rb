@@ -1,8 +1,3 @@
-<<<<<<<<< saved version
-
-=========
-
->>>>>>>>> local version
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -15,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501133145) do
+ActiveRecord::Schema.define(version: 20180503203747) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -42,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180501133145) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "location_id"
+    t.string "date"
     t.index ["location_id"], name: "index_events_on_location_id"
   end
 
@@ -54,6 +50,8 @@ ActiveRecord::Schema.define(version: 20180501133145) do
     t.string "name"
     t.string "type"
     t.integer "university_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_locations_on_event_id"
     t.index ["university_id"], name: "index_locations_on_university_id"
   end
 

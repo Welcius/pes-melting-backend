@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
         before_action :find_comment, only: [:create, :destroy]    
         before_action :comment_auth, only: [:destroy]    
         before_action :authenticate_user
-        
+        include UtilsModule
         
         def index
           @event = Event.find(params[:event_id])

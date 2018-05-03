@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   resources :users
   #  root 'events#new'
   
-    get '/users/:user_id/events', to: 'events#index' #<- ok
+    get '/events', to: 'events#index' #<- ok
     post '/users/:user_id/events', to: 'events#create' #<- ok
-    put '/users/:user_id/events/:event_id', to: 'events#update' #
+    put '/users/:user_id/event/:event_id', to: 'events#update' #
     delete '/users/:user_id/events/:event_id', to: 'events#destroy' #
+    get '/events/:event_id/event', to: 'events#show'
     
     get '/users/:user_id/events/:event_id/comments', to: 'comments#index' 
     post '/users/:user_id/events/:event_id/comments', to: 'comments#create' 
@@ -20,10 +21,7 @@ Rails.application.routes.draw do
     post '/users/:user_id/events/:event_id/votes', to: 'votes#create'
     put '/users/:user_id/events/:event_id/votes/:id', to: 'votes#update'
     delete '/users/:user_id/events/:event_id/votes/:id', to: 'votes#destroy'
-    
-    post 'register', to: 'users#register'
-    put 'activate', to: 'users#activate'
-    delete 'login' => 'user_token#create'
+ 
 
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

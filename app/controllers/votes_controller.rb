@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :update, :destroy]
   before_action :authenticate_user
-
+  include UtilsModule
 
   def index
     @event = Event.find(params[:event_id])
@@ -19,13 +19,13 @@ class VotesController < ApplicationController
   end
 
   def create
-    @votes = Vote.new(vote_params)
-    @votes.user = current_user
-    @votes.event = Event.find(params[:event_id])
-    if @votes.save
-      render json: @votes, status: :created  
+    vote = Vote.new(vote_params)
+    vote.user = current_user
+    vote.event = Event.find(params[:event_id])
+    if vote.save
+      render json: vote, status: :created  
     else
-      sendStatus("Error creating event", :conflict, @votes.errors)  
+      sendStatus("Error creating event", :conflict, vote.errors)  
     end
   end
 
