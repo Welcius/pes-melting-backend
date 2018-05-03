@@ -28,7 +28,7 @@ class EventsController < ApplicationController
         end    
 
         def update    
-            if @event.update(params[:post].permit(:title, :description, :user_id, :latitude, :longitude, :address, :name))    
+            if @event.update(params[:post].permit(:title, :description, :user_id, :latitude, :longitude, :address, :name, :date))    
                 render json: @event
             else   
                 sendStatus("Error modifying event", :conflict, @event.errors)   
@@ -43,7 +43,7 @@ class EventsController < ApplicationController
         private    
 
         def event_params    
-            params.permit(:title, :description, :user_id, :latitude, :longitude, :address, :name)   
+            params.permit(:title, :description, :user_id, :latitude, :longitude, :address, :name, :date)   
         end   
 
         def find_event   
