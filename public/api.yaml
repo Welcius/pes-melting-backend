@@ -153,6 +153,55 @@ paths:
           description: The modified profile
           schema:
             type: object
+            properties:
+              full_name:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              faculty_id:
+                type: integer
+                minimum: 1
+              biography:
+                type: string
+            example:
+              full_name: Alex Calle Millan
+              country_code: ES
+              faculty_id: 2
+              biography: M'agraden els memes
+      responses:
+        '200':
+          description: Profile modified successfully
+          schema:
+            $ref: '#/definitions/Profile'
+        '401':
+          description: You don't have permission to modify that user profile / Not logged in
+        '404':
+          description: Profile does not exist
+        '409':
+          description: Error modifying profile
+      security:
+        - JWT: []
+    
+    post:
+      tags:
+        - user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: profile
+          in: body
+          description: The new profile
+          schema:
+            type: object
             required:
               - full_name
               - country_code
@@ -173,17 +222,16 @@ paths:
               full_name: Alex Calle Millan
               country_code: ES
               faculty_id: 2
+              biography: M'agraden els memes
       responses:
-        '200':
-          description: Profile modified successfully
+        '201':
+          description: Profile created successfully
           schema:
             $ref: '#/definitions/Profile'
         '401':
-          description: You don't have permission to modify that user profile / Not logged in
-        '404':
-          description: Profile does not exist
+          description: You don't have permission to create that user profile / Not logged in
         '409':
-          description: Error modifying profile
+          description: Profile already exists
       security:
         - JWT: []
         
