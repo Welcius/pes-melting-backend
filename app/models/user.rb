@@ -2,6 +2,9 @@ class User < ApplicationRecord
     has_secure_password
     has_one :profile
     
+    has_many :events
+    has_many :comments
+    has_many :votes
     validates_presence_of :code, :username, :email
     
     validates :username, uniqueness: {message: "has already been taken" }

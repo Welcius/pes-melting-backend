@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426073709) do
+ActiveRecord::Schema.define(version: 20180503203747) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -18,6 +18,27 @@ ActiveRecord::Schema.define(version: 20180426073709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_avatars_on_profile_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "event_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "location_id"
+    t.string "date"
+    t.index ["location_id"], name: "index_events_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -29,6 +50,8 @@ ActiveRecord::Schema.define(version: 20180426073709) do
     t.string "name"
     t.string "type"
     t.integer "university_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_locations_on_event_id"
     t.index ["university_id"], name: "index_locations_on_university_id"
   end
 
@@ -58,6 +81,13 @@ ActiveRecord::Schema.define(version: 20180426073709) do
     t.string "role", default: "student", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
