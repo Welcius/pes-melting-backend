@@ -305,6 +305,29 @@ paths:
       security:
         - JWT: []
   /users/{user_id}/events: 
+    get:
+      tags: 
+        - event
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: List displayed correctly
+          schema:
+            $ref: '#/definitions/ArrayOfEvents'
+        '401':
+          description: Not logged in
+        '404':
+          description: Event doesn't exist
+      security:
+        - JWT: []
+  /users/:user_id/events:
       post:
         tags:
           - event
@@ -591,6 +614,30 @@ definitions:
       address: Avinguda Diagonal, 647, 08028 Barcelona, Spain
       latitude: 41.3847924
       longitude: 2.11563799999999
+      
+  ArrayOfEvents:
+    type: array
+    items:
+      $ref: '#/definitions/Event'
+    example:
+    - event_id: 1
+      title: "Titol event 1"
+      description: "desc"
+      user_id: 1
+      latitude: 1.1
+      longitude: 1.2
+      address: "adreça event id 1"
+      name: "nom event id 1"
+      date: "11/11/11"
+    - event_id: 2
+      title: "Titol event 2"
+      description: "desc"
+      user_id: 1
+      latitude: 1.1
+      longitude: 1.2
+      address: "adreça event id 2"
+      name: "nom event id 2"
+      date: "22/11/22"
       
   Event:
     type: object
