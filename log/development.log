@@ -3340,3 +3340,636 @@ Processing by EventsController#show as JSON
 Completed 200 OK in 63ms (Views: 7.3ms | ActiveRecord: 3.6ms)
 
 
+Started GET "/events/7/event" for 83.34.70.253 at 2018-05-03 23:02:54 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/ubuntu/workspace/app/controllers/events_controller.rb:80: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/events_controller.rb:80: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/events/7/event" for 83.34.70.253 at 2018-05-03 23:03:58 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#show as JSON
+  Parameters: {"event_id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.03ms)
+Completed 200 OK in 86ms (Views: 7.9ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/auth/register" for 83.34.70.253 at 2018-05-04 10:33:57 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as JSON
+  Parameters: {"username"=>"albert", "email"=>"2salah.jsca6@zumrotin.ml", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "albert"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2salah.jsca6@zumrotin.ml"], ["LIMIT", 1]]
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "password_digest", "code", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-05-04 10:33:58.393014"], ["updated_at", "2018-05-04 10:33:58.393014"], ["email", "2salah.jsca6@zumrotin.ml"], ["password_digest", "$2a$10$YJgvjVrMhH.YPo9fIGxZ0eJYzZ.vcDxMPtIF9Cmk7zU7o/fZdWdTq"], ["code", "369614ee"], ["username", "albert"]]
+  [1m[35m (15.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering user_mailer/activation_email.html.erb within layouts/mailer
+  Rendered user_mailer/activation_email.html.erb within layouts/mailer (1.7ms)
+UserMailer#activation_email: processed outbound mail in 278.3ms
+Sent mail to 2salah.jsca6@zumrotin.ml (1905.6ms)
+Date: Fri, 04 May 2018 10:33:59 +0000
+From: melting.app@gmail.com
+To: 2salah.jsca6@zumrotin.ml
+Message-ID: <5aec371712351_b4723ac9043504e@uapllenobrac-projecte-pes-6013490.mail>
+Subject: Please, activate your account
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Hello  albert,
+<br>
+<br>
+Your activation code is 369614ee
+<br>
+<br>
+Thanks for joining and have a great day!
+<br>
+<br>
+Melting App Team
+  </body>
+</html>
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 201 Created in 3137ms (Views: 22.3ms | ActiveRecord: 19.1ms)
+
+
+Started POST "/auth/activate" for 83.34.70.253 at 2018-05-04 10:34:19 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#activate as JSON
+  Parameters: {"email"=>"2salah.jsca6@zumrotin.ml", "code"=>"369614ee"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2salah.jsca6@zumrotin.ml"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["username", "albert"], ["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["email", "2salah.jsca6@zumrotin.ml"], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "users" SET "activated" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["activated", "t"], ["updated_at", "2018-05-04 10:34:19.919492"], ["id", 2]]
+  [1m[35m (18.4ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 200 OK in 42ms (Views: 1.2ms | ActiveRecord: 20.6ms)
+
+
+Started POST "/auth/login" for 83.34.70.253 at 2018-05-04 10:34:33 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UserTokenController#create as JSON
+  Parameters: {"email"=>"2salah.jsca6@zumrotin.ml", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "2salah.jsca6@zumrotin.ml"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Knock::AuthToken (0.18ms)
+Completed 201 Created in 115ms (Views: 11.4ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" LIMIT ?[0m  [["LIMIT", 11]]
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:35:51 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 336ms (ActiveRecord: 0.9ms)
+
+
+  
+NameError (undefined local variable or method `event' for #<EventsController:0x00007ff55022b530>
+Did you mean?  event_url):
+  
+app/controllers/events_controller.rb:76:in `event_auth'
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:38:12 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 224ms (ActiveRecord: 1.7ms)
+
+
+  
+NameError (undefined local variable or method `event' for #<EventsController:0x0000000002b9e338>
+Did you mean?  event_url):
+  
+app/controllers/events_controller.rb:76:in `event_auth'
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:39:36 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 261ms (ActiveRecord: 1.9ms)
+
+
+  
+NameError (undefined local variable or method `event' for #<EventsController:0x000000000306f7e0>
+Did you mean?  event_url):
+  
+app/controllers/events_controller.rb:76:in `event_auth'
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:46:03 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 2.4ms)
+
+
+  
+NoMethodError (undefined method `user_id' for :event:Symbol):
+  
+app/controllers/events_controller.rb:49:in `update'
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:46:58 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 168ms (ActiveRecord: 2.5ms)
+
+
+  
+NoMethodError (undefined method `same_user_as_current' for #<EventsController:0x0000000003adb4e0>):
+  
+app/controllers/events_controller.rb:49:in `update'
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:47:45 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "events" SET "user_id" = ?, "title" = ?, "description" = ?, "date" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["user_id", 2], ["title", "titol canviat"], ["description", "descripció canviada"], ["date", "22/06/2020"], ["updated_at", "2018-05-04 10:47:45.478662"], ["id", 1]]
+  [1m[35m (13.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."event_id" = ? LIMIT ?[0m  [["event_id", 1], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 16.7ms)
+
+
+  
+NoMethodError (undefined method `update' for nil:NilClass):
+  
+app/controllers/events_controller.rb:55:in `update'
+Started PUT "/users/2/event/1/event" for 83.34.70.253 at 2018-05-04 10:50:22 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"1", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 409 Conflict in 50ms (Views: 6.9ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/users/2/events" for 83.34.70.253 at 2018-05-04 10:50:59 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#create as JSON
+  Parameters: {"title"=>"titol creat", "description"=>"descripció creada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event"=>{"title"=>"titol creat", "description"=>"descripció creada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "locations" ("created_at", "updated_at", "latitude", "longitude", "address", "name") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-05-04 10:50:59.208819"], ["updated_at", "2018-05-04 10:50:59.208819"], ["latitude", 1.2], ["longitude", 1.3], ["address", "carrer creat"], ["name", "La locura"]]
+  [1m[35m (14.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "events" ("title", "description", "created_at", "updated_at", "user_id", "date") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "titol creat"], ["description", "descripció creada"], ["created_at", "2018-05-04 10:50:59.263177"], ["updated_at", "2018-05-04 10:50:59.263177"], ["user_id", 2], ["date", "22/06/2020"]]
+  [1m[35m (13.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "events" SET "updated_at" = ?, "location_id" = ? WHERE "events"."id" = ?[0m  [["updated_at", "2018-05-04 10:50:59.284395"], ["location_id", 13], ["id", 8]]
+  [1m[35m (14.0ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Event (0.55ms)
+Completed 201 Created in 186ms (Views: 11.2ms | ActiveRecord: 45.9ms)
+
+
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:51:10 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 409 Conflict in 4ms (Views: 0.8ms | ActiveRecord: 0.7ms)
+
+
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:51:13 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 409 Conflict in 3ms (Views: 0.7ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:52:34 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 409 Conflict in 51ms (Views: 7.0ms | ActiveRecord: 2.3ms)
+
+
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:53:29 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Completed 500 Internal Server Error in 52ms (Views: 7.2ms | ActiveRecord: 2.3ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/events_controller.rb:65:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:53:51 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.03ms)
+Completed 200 OK in 50ms (Views: 7.5ms | ActiveRecord: 2.4ms)
+
+
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:55:14 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "events" SET "title" = ?, "description" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["title", "titol canviat"], ["description", "descripció canviada"], ["updated_at", "2018-05-04 10:55:15.025461"], ["id", 8]]
+  [1m[35m (14.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."event_id" = ? LIMIT ?[0m  [["event_id", 8], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+Completed 500 Internal Server Error in 93ms (ActiveRecord: 18.2ms)
+
+
+  
+NoMethodError (undefined method `update' for nil:NilClass):
+  
+app/controllers/events_controller.rb:56:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 10:57:11 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 3.2ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:01:03 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 5.5ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:59:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:04:08 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 166ms (ActiveRecord: 4.7ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:04:11 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.6ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:12:51 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 4.6ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:13:59 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 3.6ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:15:47 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 84ms (ActiveRecord: 3.9ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:16:34 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCACHE Location Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.79ms)
+Completed 200 OK in 151ms (Views: 7.5ms | ActiveRecord: 3.8ms)
+
+
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:18:16 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+Completed 500 Internal Server Error in 85ms (ActiveRecord: 3.9ms)
+
+
+  
+NoMethodError (undefined method `update' for true:TrueClass):
+  
+app/controllers/events_controller.rb:57:in `update'
+Started PUT "/users/2/event/8/event" for 83.34.70.253 at 2018-05-04 11:18:45 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCACHE Location Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.4ms)
+Completed 200 OK in 117ms (Views: 11.4ms | ActiveRecord: 4.4ms)
+
+
+Started DELETE "/users/3/event/8/event" for 83.34.70.253 at 2018-05-04 11:22:01 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/users/3/event/8/event"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started PUT "/users/2/events/8/event" for 83.34.70.253 at 2018-05-04 11:23:19 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#update as JSON
+  Parameters: {"title"=>"titol canviat", "description"=>"descripció canviada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event_id"=>"8", "event"=>{"title"=>"titol canviat", "description"=>"descripció canviada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCACHE Location Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.97ms)
+Completed 200 OK in 171ms (Views: 9.7ms | ActiveRecord: 4.6ms)
+
+
+Started DELETE "/users/1/events/8/event" for 83.34.70.253 at 2018-05-04 11:23:34 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#destroy as JSON
+  Parameters: {"user_id"=>"1", "event_id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 278ms (ActiveRecord: 0.2ms)
+
+
+  
+NameError (undefined local variable or method `event' for #<EventsController:0x0000000004fae7a0>
+Did you mean?  event_url):
+  
+app/controllers/events_controller.rb:71:in `destroy'
+Started DELETE "/users/1/events/8/event" for 83.34.70.253 at 2018-05-04 11:24:21 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#destroy as JSON
+  Parameters: {"user_id"=>"1", "event_id"=>"8"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 8]]
+  [1m[35m (14.8ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Event (0.75ms)
+Completed 500 Internal Server Error in 90ms (Views: 12.7ms | ActiveRecord: 18.7ms)
+
+
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started DELETE "/users/2/events/7/event" for 83.34.70.253 at 2018-05-04 11:25:45 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#destroy as JSON
+  Parameters: {"user_id"=>"2", "event_id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 409 Conflict in 93ms (Views: 5.6ms | ActiveRecord: 2.6ms)
+
+
+Started DELETE "/users/1/events/7/event" for 83.34.70.253 at 2018-05-04 11:26:02 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#destroy as JSON
+  Parameters: {"user_id"=>"1", "event_id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 409 Conflict in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/2/events" for 83.34.70.253 at 2018-05-04 11:26:26 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#create as JSON
+  Parameters: {"title"=>"titol creat", "description"=>"descripció creada", "latitude"=>"1.2", "longitude"=>"1.3", "address"=>"carrer creat", "name"=>"La locura", "date"=>"22/06/2020", "user_id"=>"2", "event"=>{"title"=>"titol creat", "description"=>"descripció creada", "date"=>"22/06/2020"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameters: :title, :description, :date, :user_id, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "locations" ("created_at", "updated_at", "latitude", "longitude", "address", "name") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-05-04 11:26:26.840538"], ["updated_at", "2018-05-04 11:26:26.840538"], ["latitude", 1.2], ["longitude", 1.3], ["address", "carrer creat"], ["name", "La locura"]]
+  [1m[35m (19.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Unpermitted parameters: :latitude, :longitude, :address, :name, :event
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "description", "created_at", "updated_at", "user_id", "date") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "titol creat"], ["description", "descripció creada"], ["created_at", "2018-05-04 11:26:26.895328"], ["updated_at", "2018-05-04 11:26:26.895328"], ["user_id", 2], ["date", "22/06/2020"]]
+  [1m[35m (16.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "events" SET "updated_at" = ?, "location_id" = ? WHERE "events"."id" = ?[0m  [["updated_at", "2018-05-04 11:26:26.916033"], ["location_id", 14], ["id", 9]]
+  [1m[35m (12.1ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Event (0.49ms)
+Completed 201 Created in 143ms (Views: 7.2ms | ActiveRecord: 52.2ms)
+
+
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started DELETE "/users/1/events/9/event" for 83.34.70.253 at 2018-05-04 11:26:43 +0000
+Cannot render console from 83.34.70.253! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by EventsController#destroy as JSON
+  Parameters: {"user_id"=>"1", "event_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = ?[0m  [["id", 9]]
+  [1m[35m (44.1ms)[0m  [1m[36mcommit transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Event (0.65ms)
+Completed 500 Internal Server Error in 52ms (Views: 2.3ms | ActiveRecord: 45.7ms)
+
+
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
