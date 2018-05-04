@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users
   #  root 'events#new'
   
-    get '/events', to: 'events#index' #<- ok
+    get '/users/:user_id/events', to: 'events#index' #<- ok
     post '/users/:user_id/events', to: 'events#create' #<- ok
     put '/users/:user_id/events/:event_id/event', to: 'events#update' #<- ok
     delete '/users/:user_id/events/:event_id/event', to: 'events#destroy' #FALTA
