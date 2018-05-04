@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503203747) do
+ActiveRecord::Schema.define(version: 20180503151912) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20180503203747) do
     t.string "name"
     t.string "type"
     t.integer "university_id"
-    t.integer "event_id"
-    t.index ["event_id"], name: "index_locations_on_event_id"
     t.index ["university_id"], name: "index_locations_on_university_id"
   end
 
