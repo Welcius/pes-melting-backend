@@ -3,7 +3,7 @@ info:
   title: Melting App API
   description: API for the Melting App
   version: 1.0.0
-host: projecte-pes-acami.c9users.io
+host: melting-app.herokuapp.com
 tags:
   - name: auth
     description: Auth related endpoints
