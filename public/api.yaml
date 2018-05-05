@@ -3,16 +3,16 @@ info:
   title: Melting App API
   description: API for the Melting App
   version: 1.0.0
-host: melting-app.herokuapp.com
+host: projecte-pes-acami.c9users.io
 tags:
-- name: auth
-  description: Auth related endpoints
-- name: user
-  description: User related endpoints
-- name: location
-  description: Location related endpoints
+  - name: auth
+    description: Auth related endpoints
+  - name: user
+    description: User related endpoints
+  - name: location
+    description: Location related endpoints
 schemes:
-- https
+  - https
 paths:
   /auth/register:
     post:
@@ -27,27 +27,25 @@ paths:
           in: formData
           required: true
           type: string
-          
         - name: email
           in: formData
           required: true
           type: string
           format: email
-          
         - name: password
           in: formData
           required: true
           type: string
           format: password
-          
       responses:
         '201':
           description: User created successfully
         '400':
-          description: Missing fields / Input fields do not satisfy the appropiate requirements
+          description: >-
+            Missing fields / Input fields do not satisfy the appropiate
+            requirements
         '409':
           description: User already exists
-  
   /auth/activate:
     post:
       tags:
@@ -62,12 +60,10 @@ paths:
           required: true
           type: string
           format: email
-          
         - name: code
           in: formData
           required: true
           type: string
-
       responses:
         '200':
           description: User has been activated
@@ -77,7 +73,6 @@ paths:
           description: Mail and/or the code are not correct
         '409':
           description: User is already activated
-          
   /auth/login:
     post:
       tags:
@@ -92,13 +87,11 @@ paths:
           required: true
           type: string
           format: email
-        
         - name: password
           in: formData
           required: true
           type: string
           format: password
-        
       responses:
         '201':
           description: Login successful
@@ -108,11 +101,10 @@ paths:
             application/json:
               jwt: YOUR_JWT_TOKEN
         '404':
-          description: Incorrect email and/or password
-          
-  /users/{user_id}/profile:
+          description: Incorrect email and/or password / User not activated / User deleted
+  '/users/{user_id}/profile':
     get:
-      tags: 
+      tags:
         - user
       consumes:
         - application/json
@@ -167,7 +159,7 @@ paths:
                 type: string
             example:
               full_name: Alex Calle Millan
-              country_code: ES 
+              country_code: ES
               faculty_id: 2
               biography: M'agraden els memes
       responses:
@@ -176,14 +168,15 @@ paths:
           schema:
             $ref: '#/definitions/Profile'
         '401':
-          description: You don't have permission to modify that user profile / Not logged in
+          description: >-
+            You don't have permission to modify that user profile / Not logged
+            in
         '404':
           description: Profile does not exist
         '409':
           description: Error modifying profile
       security:
         - JWT: []
-    
     post:
       tags:
         - user
@@ -229,16 +222,17 @@ paths:
           schema:
             $ref: '#/definitions/Profile'
         '401':
-          description: You don't have permission to create that user profile / Not logged in
+          description: >-
+            You don't have permission to create that user profile / Not logged
+            in
         '409':
           description: Profile already exists
       security:
         - JWT: []
-        
-  /users/{user_id}/profile/avatar:
+  '/users/{user_id}/profile/avatar':
     post:
       tags:
-       - user
+        - user
       consumes:
         - multipart/form-data
       produces:
@@ -249,25 +243,50 @@ paths:
           required: true
           type: integer
           minimum: 1
-          
-        - name: profile[avatar]
+        - name: 'profile[avatar]'
           in: formData
           type: file
           description: The new avatar image
-          
       responses:
         '200':
           description: Avatar updated successfully
         '400':
           description: Invalid avatar
         '401':
-          description: You don't have permission to modify that user profile / Not logged in
+          description: >-
+            You don't have permission to modify that user profile / Not logged
+            in
       security:
         - JWT: []
-        
+  '/users/{user_id}':
+    delete:
+      tags:
+        - user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: The user was deleted
+        '401':
+          description: >-
+            You don't have permission to delete that user / Not logged in
+        '404':
+          description: User does not exist
+        '409':
+          description: 'The user is already deleted / Error deleting user'
+      security:
+        - JWT: []
   /locations/universities:
     get:
-      tags: 
+      tags:
         - location
       produces:
         - application/json
@@ -280,10 +299,9 @@ paths:
           description: Not logged in
       security:
         - JWT: []
-  
-  /locations/universities/{university_id}/faculties:
+  '/locations/universities/{university_id}/faculties':
     get:
-      tags: 
+      tags:
         - location
       produces:
         - application/json
@@ -304,9 +322,9 @@ paths:
           description: University doesn't exist
       security:
         - JWT: []
-  /users/{user_id}/events: 
+  '/users/{user_id}/events':
     get:
-      tags: 
+      tags:
         - event
       produces:
         - application/json
@@ -327,70 +345,70 @@ paths:
           description: Event doesn't exist
       security:
         - JWT: []
-  /users/:user_id/events:
-      post:
-        tags:
-          - event
-        consumes:
-          - application/json
-        produces:
-          - application/json
-        parameters:
-          - name: user_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
-          - name: event
-            in: body
-            description: The new event
-            schema:
-              type: object
-              required:
-                - title
-                - description
-                - latitude
-                - longitude
-                - address
-                - name
-                - date
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                latitude:
-                  type: number
-                longitude:
-                  type: number
-                address:
-                  type: string
-                name:
-                  type: string
-                date:
-                  type: string
-              example:
-                title: "titol creat"
-                description: "descripció creada"
-                latitude: "1.2"
-                longitude: "1.3"
-                address: "carrer creat"
-                name: "La locura"
-                date: "22/06/2020"
-        responses:
-          '201':
-            description: Eevent created successfully
-            schema:
-              $ref: '#/definitions/Event'
-          '401':
-            description: You don't have permission to create that event / Not logged in
-          '409':
-            description: Error
-        security:
-          - JWT: []
-  /events/{event_id}/event:
+  '/users/:user_id/events':
+    post:
+      tags:
+        - event
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: event
+          in: body
+          description: The new event
+          schema:
+            type: object
+            required:
+              - title
+              - description
+              - latitude
+              - longitude
+              - address
+              - name
+              - date
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              latitude:
+                type: number
+              longitude:
+                type: number
+              address:
+                type: string
+              name:
+                type: string
+              date:
+                type: string
+            example:
+              title: titol creat
+              description: descripció creada
+              latitude: '1.2'
+              longitude: '1.3'
+              address: carrer creat
+              name: La locura
+              date: 22/06/2020
+      responses:
+        '201':
+          description: Eevent created successfully
+          schema:
+            $ref: '#/definitions/Event'
+        '401':
+          description: You don't have permission to create that event / Not logged in
+        '409':
+          description: Error
+      security:
+        - JWT: []
+  '/events/{event_id}/event':
     get:
-      tags: 
+      tags:
         - event
       consumes:
         - application/json
@@ -410,10 +428,10 @@ paths:
         '401':
           description: Not logged in
         '404':
-          description: Event doesn't exist 
+          description: Event doesn't exist
       security:
         - JWT: []
-  /users/{user_id}/events/{event_id}/event:
+  '/users/{user_id}/events/{event_id}/event':
     put:
       tags:
         - event
@@ -453,13 +471,13 @@ paths:
               date:
                 type: string
             example:
-              title: "titol canviat"
-              description: "descripció canviada"
-              latitude: "1.2"
-              longitude: "1.3"
-              address: "carrer creat"
-              name: "La locura"
-              date: "22/06/2020"
+              title: titol canviat
+              description: descripció canviada
+              latitude: '1.2'
+              longitude: '1.3'
+              address: carrer creat
+              name: La locura
+              date: 22/06/2020
       responses:
         '200':
           description: Event modified successfully
@@ -474,7 +492,7 @@ paths:
       security:
         - JWT: []
     delete:
-      tags: 
+      tags:
         - event
       consumes:
         - application/json
@@ -491,11 +509,6 @@ paths:
           required: true
           type: integer
           minimum: 1
-        - name: comment_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
       responses:
         '200':
           description: Event erased
@@ -504,257 +517,14 @@ paths:
         '401':
           description: Not logged in
         '404':
-          description: Event doesn't exist 
-      security:
-        - JWT: []  
-  /users/{user_id}/events/{event_id}/comments: 
-    get:
-      tags: 
-        - comment
-      produces:
-        - application/json
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1 
-      responses:
-        '200':
-          description: List displayed correctly
-          schema:
-            $ref: '#/definitions/ArrayOfComments'
-        '401':
-          description: Not logged in
-        '404':
-          description: Comments doesn't exist
+          description: Event doesn't exist
       security:
         - JWT: []
-    post:
-        tags:
-          - comment
-        consumes:
-          - application/json
-        produces:
-          - application/json
-        parameters:
-          - name: user_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
-          - name: event_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
-          - name: event
-            in: body
-            description: THE new comment
-            schema:
-              type: object
-              required:
-                - content
-              properties:
-                title:
-                  type: string
-              example:
-                content: "La vida és meravellosa després de fer un comentari"
-        responses:
-          '201':
-            description: Comment created successfully
-            schema:
-              $ref: '#/definitions/Comment'
-          '401':
-            description: You don't have permission to create that comment / Not logged in
-          '409':
-            description: Error
-        security:
-          - JWT: []
-  /users/{user_id}/events/{event_id}/comments/{comment_id}/comment:
-    put:
-      tags:
-        - comment
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: comment_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: comment
-          in: body
-          description: The modified comment
-          schema:
-            type: object
-            properties:
-              content:
-                type: string
-            example:
-              content: "Necessito una pizza ja"
-      responses:
-        '200':
-          description: Comment modified successfully
-          schema:
-            $ref: '#/definitions/Comment'
-        '401':
-          description: You don't have permission to modify that comment / Not logged in
-        '404':
-          description: Comment does not exist
-        '409':
-          description: Error modifying comment
-      security:
-        - JWT: []
-    delete:
-      tags: 
-        - comment
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: comment_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1  
-      responses:
-        '200':
-          description: Event erased
-          schema:
-            $ref: '#/definitions/Event'
-        '401':
-          description: Not logged in
-        '404':
-          description: Event doesn't exist 
-      security:
-        - JWT: []  
-  /users/{user_id}/events/{event_id}/votes: 
-    get:
-      tags: 
-        - vote
-      produces:
-        - application/json
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1 
-      responses:
-        '200':
-          description: List displayed correctly
-          schema:
-            $ref: '#/definitions/ArrayOfVotes'
-        '401':
-          description: Not logged in
-        '404':
-          description: Votes doesn't exist
-      security:
-        - JWT: []
-    post:
-        tags:
-          - vote
-        consumes:
-          - application/json
-        produces:
-          - application/json
-        parameters:
-          - name: user_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
-          - name: event_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
-        responses:
-          '201':
-            description: Comment created successfully
-            schema:
-              $ref: '#/definitions/Comment'
-          '401':
-            description: You don't have permission to create that vote / Not logged in
-          '409':
-            description: Error
-        security:
-          - JWT: []
-  /users/{user_id}/events/{event_id}/votes/{vote_id}/vote:
-    delete:
-      tags: 
-        - vote
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: vote_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1  
-      responses:
-        '200':
-          description: Vote erased
-          schema:
-            $ref: '#/definitions/Event'
-        '401':
-          description: Not logged in
-        '404':
-          description: Vote doesn't exist 
-      security:
-        - JWT: []  
 securityDefinitions:
   JWT:
     type: apiKey
     in: header
     name: Authorization
-    
 definitions:
   StatusResponse:
     type: object
@@ -775,7 +545,9 @@ definitions:
   Profile:
     type: object
     required:
-      - user_id, full_name, biography, karma, country_code, university, university_id, faculty, faculty_id, avatarURL
+      - >-
+        user_id, full_name, biography, karma, country_code, university,
+        university_id, faculty, faculty_id, avatarURL
     properties:
       user_id:
         type: integer
@@ -811,11 +583,10 @@ definitions:
       faculty: Facultat d'Informàtica de Barcelona
       faculty_id: 2
       avatarURL: /uploads/store/e6008535fefa27266fe80db3ecf07a2a.jpg
-      
   Location:
     type: object
     required:
-      - location_id, name, address, latitude, longitude
+      - 'location_id, name, address, latitude, longitude'
     properties:
       location_id:
         type: integer
@@ -828,93 +599,65 @@ definitions:
         type: number
       longitude:
         type: number
-        
   ArrayOfUniversities:
     type: array
     items:
       $ref: '#/definitions/Location'
     example:
-    - location_id: 1
-      name: Universitat Politècnica de Catalunya
-      address: Carrer de Jordi Girona, 26, 08034 Barcelona, Spain
-      latitude: 41.3880816726885
-      longitude: 2.11546764026158
-    - location_id: 4
-      name: Universitat de Barcelona
-      address: Gran Via de les Corts Catalanes, 596, 08007 Barcelona, Spain
-      latitude: 41.3868156029942
-      longitude: 2.16481325453837
-  
+      - location_id: 1
+        name: Universitat Politècnica de Catalunya
+        address: 'Carrer de Jordi Girona, 26, 08034 Barcelona, Spain'
+        latitude: 41.3880816726885
+        longitude: 2.11546764026158
+      - location_id: 4
+        name: Universitat de Barcelona
+        address: 'Gran Via de les Corts Catalanes, 596, 08007 Barcelona, Spain'
+        latitude: 41.3868156029942
+        longitude: 2.16481325453837
   ArrayOfFaculties:
     type: array
     items:
       $ref: '#/definitions/Location'
     example:
-    - location_id: 2
-      name: Facultat d' Informàtica de Barcelona
-      address: carrer de John Maynard Keynes, 27-35, 08034 Barcelona, Spain
-      latitude: 41.3894841
-      longitude: 2.11338590000003
-    - location_id: 3
-      name: Escola Tècnica Superior d'Enginyeria Industrial de Barcelona
-      address: Avinguda Diagonal, 647, 08028 Barcelona, Spain
-      latitude: 41.3847924
-      longitude: 2.11563799999999
-      
+      - location_id: 2
+        name: Facultat d' Informàtica de Barcelona
+        address: 'carrer de John Maynard Keynes, 27-35, 08034 Barcelona, Spain'
+        latitude: 41.3894841
+        longitude: 2.11338590000003
+      - location_id: 3
+        name: Escola Tècnica Superior d'Enginyeria Industrial de Barcelona
+        address: 'Avinguda Diagonal, 647, 08028 Barcelona, Spain'
+        latitude: 41.3847924
+        longitude: 2.11563799999999
   ArrayOfEvents:
     type: array
     items:
       $ref: '#/definitions/Event'
     example:
-    - event_id: 1
-      title: "Titol event 1"
-      description: "desc"
-      user_id: 1
-      latitude: 1.1
-      longitude: 1.2
-      address: "adreça event id 1"
-      name: "nom event id 1"
-      date: "11/11/11"
-    - event_id: 2
-      title: "Titol event 2"
-      description: "desc"
-      user_id: 1
-      latitude: 1.1
-      longitude: 1.2
-      address: "adreça event id 2"
-      name: "nom event id 2"
-      date: "22/11/22"
-      
-  ArrayOfComments:
-    type: array
-    items:
-      $ref: '#/definitions/Comment'
-    example:
-    - comment_id: 1
-      content: "Primer comentari"
-      event_id: 1
-      user_id: 1
-    - comment_id: 2
-      content: "Segon i últim comentari"
-      event_id: 1
-      user_id: 2
-      
-  ArrayOfVotes:
-    type: array
-    items:
-      $ref: '#/definitions/Vote'
-    example:
-    - vote_id: 1
-      event_id: 1
-      user_id: 1
-    - vote_id: 2
-      event_id: 1
-      user_id: 2
-      
+      - event_id: 1
+        title: Titol event 1
+        description: desc
+        user_id: 1
+        latitude: 1.1
+        longitude: 1.2
+        address: adreça event id 1
+        name: nom event id 1
+        date: 11/11/11
+      - event_id: 2
+        title: Titol event 2
+        description: desc
+        user_id: 1
+        latitude: 1.1
+        longitude: 1.2
+        address: adreça event id 2
+        name: nom event id 2
+        date: 22/11/22
   Event:
     type: object
-    required: 
-      - 'event_id, title, description, user_id, latitude, longitude, address, name, date'
+    required:
+      - >-
+        event_id, title, description, user_id, latitude, longitude, address,
+        name, date
     properties:
       event_id:
         type: integer
@@ -935,55 +678,13 @@ definitions:
         type: string
       date:
         type: string
-    example: 
+    example:
       event_id: 1
-      title: 'Aquest és un event'
-      description: 'Descripció de levent'
+      title: Aquest és un event
+      description: Descripció de levent
       user_id: 1
       latitude: 1.22
       longitude: 1.23
-      address: 'Carrer ja funciona'
-      name: 'Festa del carrer'
-      date: '10/10/2020'
-      
-  Comment:
-    type: object
-    required: 
-      - 'comment_id, event_id, user_id, content'
-    properties:
-      comment_id:
-        type: integer
-        minimum: 1
-      event_id:
-        type: integer
-      user_id:
-        type: integer
-      content:
-        type: string
-    example: 
-      comment_id: 1
-      event_id: 1
-      user_id: 1
-      content: 'Estic orgullós dhaver fet aquest comentari i que funcioni'
-  
-  Vote:
-    type: object
-    required: 
-      - 'vote_id, event_id, user_id'
-    properties:
-      vote_id:
-        type: integer
-        minimum: 1
-      event_id:
-        type: integer
-      user_id:
-        type: integer
-      content:
-        type: string
-    example: 
-      vote_id: 1
-      event_id: 1
-      user_id: 1
-      
-      
-    
+      address: Carrer ja funciona
+      name: Festa del carrer
+      date: 10/10/2020
