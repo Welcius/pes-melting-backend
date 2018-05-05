@@ -3,6 +3,7 @@ require 'json'
 
 class StaticInfo 
     include HTTParty
+    
     base_uri "http://serveisoberts.gencat.cat"
     
     def info1
@@ -10,8 +11,15 @@ class StaticInfo
     end
     
     def info2
-        self.class.get('/equipaments/search?rows=ALL&adreca.municipi=Barcelona&categories.subtema=Facultats%20i%20escoles&categories.tema=Universitats')
-    end     
+        def var 
+             "UPC" 
+        end
+        self.class.get('/equipaments/search?rows=ALL&adreca.municipi=Barcelona&categories.subtema=Facultats%20i%20escoles&categories.tema=Universitats&nickname='+var)
+    end   
+    
+    
+    
+    
 end
 
 satatic_info = StaticInfo.new

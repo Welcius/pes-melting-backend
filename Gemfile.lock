@@ -71,6 +71,8 @@ GEM
       simpleidn
     erubi (1.7.1)
     execjs (2.7.0)
+    fast_jsonapi (1.1.1)
+      activesupport (>= 4.2)
     fastimage (2.1.1)
     ffi (1.9.23)
     geocoder (1.4.7)
@@ -224,6 +226,7 @@ DEPENDENCIES
   coffee-rails (= 4.2.2)
   countries
   email_address (~> 0.1.8)
+  fast_jsonapi (~> 1.1, >= 1.1.1)
   fastimage
   geocoder
   httparty

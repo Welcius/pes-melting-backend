@@ -23,7 +23,8 @@ gem 'geocoder'                        # informació d'ubicació geogràfica
 gem 'active_model_serializers'        # serialització de models
 gem 'rails-erd', group: :development  # generació de diagrama de la BD
 gem  'json'                           
-gem  'httparty'                       
+gem  'httparty'    
+gem 'fast_jsonapi', '~> 1.1', '>= 1.1.1'
 # fi gems afegides
 
 group :development, :test do
