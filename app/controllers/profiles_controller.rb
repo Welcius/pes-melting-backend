@@ -1,11 +1,4 @@
-module ProfilesHelper
-   def same_user_as_current(user_id)
-      return user_id == current_user.id 
-   end
-end
-
 class ProfilesController < ApplicationController
-    include ProfilesHelper
     include UtilsModule
     
     before_action :authenticate_user
