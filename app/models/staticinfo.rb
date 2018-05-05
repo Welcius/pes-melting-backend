@@ -3,12 +3,16 @@ require 'json'
 
 class StaticInfo 
     include HTTParty
-    base_uri "https://serveisoberts.gencat.cat"
+    base_uri "http://serveisoberts.gencat.cat"
     
     def info1
-        self.class.get('/equipaments/search?rows=ALL&categories.tema=Recerca&categories.subtema=Estructures%20universitàries&categories.subtema2=Universitats&adreca.municipi=Barcelona')
+        self.class.get('/equipaments/search?rows=ALL&categories.tema=recerca&categories.subtema=Estructures%20universitaries&categories.subtema2=Universitats&adreca.municipi=Barcelona')
     end
+    
+    def info2
+        self.class.get('/equipaments/search?rows=ALL&adreca.municipi=Barcelona&categories.subtema=Facultats%20i%20escoles&categories.tema=Universitats')
+    end     
 end
 
 satatic_info = StaticInfo.new
-puts satatic_info.info1
+puts satatic_info.info2
