@@ -6,4 +6,8 @@ module UtilsModule
             render json: { :message => message, :errors => errors }, :status => status
         end
     end
+    
+    def same_user_as_current(user_id)
+      return user_id == current_user.id 
+    end
 end

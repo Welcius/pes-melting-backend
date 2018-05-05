@@ -32,7 +32,7 @@ class UsersController < ApplicationController
             if checkRegisterFields?(params[:email], params[:username], params[:password])
                 encrypted_pwd = BCrypt::Password.create(params[:password])
                 code = SecureRandom.hex[0..7]
-                newuser = User.new(:email => params[:email].downcase, :username => params[:username], :password_digest => encrypted_pwd, :code => code)
+                newuser = User.new(:email => params[:email].downcase, :username => params[:username], :password_digest => encrypted_pwd, :code => code, :last_status => Time.now.to_i)
                 if newuser.save
                     UserMailer.activation_email(params[:email], params[:username], code).deliver_now
                     sendStatus("User has been created correctly: please confirm your email", :created)
@@ -70,6 +70,30 @@ class UsersController < ApplicationController
             end
         else
             sendStatus("Missing fields", :bad_request)
+        end
+    end
+    
+    def delete
+        user = User.find_by_id(params[:user_id])
+        if user.nil?
+            sendStatus("User does not exist", :not_found)
+        else
+            if not same_user_as_current(params[:user_id].to_i)
+                sendStatus("You don't have permission to delete that user", :unauthorized)
+            else
+                if user.account_deleted
+                    sendStatus("The user is already deleted", :conflict)
+                else
+                    if user.update(:account_deleted => true)
+                        sendStatus("The user was deleted", :ok)
+                        if not user.profile.nil?
+                            user.profile.update(:full_name => 'Deleted')
+                        end
+                    else
+                        sendStatus("Error deleting user", :conflict)
+                    end
+                end
+            end
         end
     end
 end

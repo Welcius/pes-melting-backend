@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503151912) do
+ActiveRecord::Schema.define(version: 20180505132935) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20180503151912) do
     t.string "code", default: "", null: false
     t.string "username", default: "", null: false
     t.string "role", default: "student", null: false
+    t.integer "last_status"
+    t.boolean "account_deleted", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
