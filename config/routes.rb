@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     put '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#update'#<- ok
     delete '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#destroy'#<- ok
     
-    get '/users/:user_id/events/:event_id/votes', to: 'votes#index'
-    post '/users/:user_id/events/:event_id/votes', to: 'votes#create'
-    delete '/users/:user_id/events/:event_id/votes/:event_id/vote', to: 'votes#destroy'
+    get '/users/:user_id/events/:event_id/votes', to: 'votes#index' #<- ok
+    post '/users/:user_id/events/:event_id/votes', to: 'votes#create' #<- ok
+    delete '/users/:user_id/events/:event_id/votes/:event_id/vote', to: 'votes#destroy' #<- ok
  
 
  
