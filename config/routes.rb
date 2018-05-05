@@ -9,18 +9,17 @@ Rails.application.routes.draw do
     get '/users/:user_id/events', to: 'events#index' #<- ok
     post '/users/:user_id/events', to: 'events#create' #<- ok
     put '/users/:user_id/events/:event_id/event', to: 'events#update' #<- ok
-    delete '/users/:user_id/events/:event_id/event', to: 'events#destroy' #FALTA
+    delete '/users/:user_id/events/:event_id/event', to: 'events#destroy' #F<- ok
     get '/events/:event_id/event', to: 'events#show' #<- ok
     
-    get '/users/:user_id/events/:event_id/comments', to: 'comments#index' 
-    post '/users/:user_id/events/:event_id/comments', to: 'comments#create' 
-    put '/users/:user_id/events/:event_id/comments/:id', to: 'comments#update'
-    delete '/users/:user_id/events/:event_id/comments/:id', to: 'comments#destroy'
+    get '/users/:user_id/events/:event_id/comments', to: 'comments#index'  #<- ok
+    post '/users/:user_id/events/:event_id/comments', to: 'comments#create'  #<- ok
+    put '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#update'#<- ok
+    delete '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#destroy'#<- ok
     
-    get '/users/:user_id/events/:event_id/votes', to: 'votes#create'
+    get '/users/:user_id/events/:event_id/votes', to: 'votes#index'
     post '/users/:user_id/events/:event_id/votes', to: 'votes#create'
-    put '/users/:user_id/events/:event_id/votes/:id', to: 'votes#update'
-    delete '/users/:user_id/events/:event_id/votes/:id', to: 'votes#destroy'
+    delete '/users/:user_id/events/:event_id/votes/:event_id/vote', to: 'votes#destroy'
  
 
  

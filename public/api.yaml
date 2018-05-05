@@ -491,6 +491,11 @@ paths:
           required: true
           type: integer
           minimum: 1
+        - name: comment_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
       responses:
         '200':
           description: Event erased
@@ -502,7 +507,248 @@ paths:
           description: Event doesn't exist 
       security:
         - JWT: []  
-  
+  /users/{user_id}/events/{event_id}/comments: 
+    get:
+      tags: 
+        - comment
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1 
+      responses:
+        '200':
+          description: List displayed correctly
+          schema:
+            $ref: '#/definitions/ArrayOfComments'
+        '401':
+          description: Not logged in
+        '404':
+          description: Comments doesn't exist
+      security:
+        - JWT: []
+    post:
+        tags:
+          - comment
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - name: user_id
+            in: path
+            required: true
+            type: integer
+            minimum: 1
+          - name: event_id
+            in: path
+            required: true
+            type: integer
+            minimum: 1
+          - name: event
+            in: body
+            description: THE new comment
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                title:
+                  type: string
+              example:
+                content: "La vida és meravellosa després de fer un comentari"
+        responses:
+          '201':
+            description: Comment created successfully
+            schema:
+              $ref: '#/definitions/Comment'
+          '401':
+            description: You don't have permission to create that comment / Not logged in
+          '409':
+            description: Error
+        security:
+          - JWT: []
+  /users/{user_id}/events/{event_id}/comments/{comment_id}/comment:
+    put:
+      tags:
+        - comment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: comment_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: comment
+          in: body
+          description: The modified comment
+          schema:
+            type: object
+            properties:
+              content:
+                type: string
+            example:
+              content: "Necessito una pizza ja"
+      responses:
+        '200':
+          description: Comment modified successfully
+          schema:
+            $ref: '#/definitions/Comment'
+        '401':
+          description: You don't have permission to modify that comment / Not logged in
+        '404':
+          description: Comment does not exist
+        '409':
+          description: Error modifying comment
+      security:
+        - JWT: []
+    delete:
+      tags: 
+        - comment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: comment_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1  
+      responses:
+        '200':
+          description: Event erased
+          schema:
+            $ref: '#/definitions/Event'
+        '401':
+          description: Not logged in
+        '404':
+          description: Event doesn't exist 
+      security:
+        - JWT: []  
+  /users/{user_id}/events/{event_id}/votes: 
+    get:
+      tags: 
+        - vote
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1 
+      responses:
+        '200':
+          description: List displayed correctly
+          schema:
+            $ref: '#/definitions/ArrayOfVotes'
+        '401':
+          description: Not logged in
+        '404':
+          description: Votes doesn't exist
+      security:
+        - JWT: []
+    post:
+        tags:
+          - vote
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - name: user_id
+            in: path
+            required: true
+            type: integer
+            minimum: 1
+          - name: event_id
+            in: path
+            required: true
+            type: integer
+            minimum: 1
+        responses:
+          '201':
+            description: Comment created successfully
+            schema:
+              $ref: '#/definitions/Comment'
+          '401':
+            description: You don't have permission to create that vote / Not logged in
+          '409':
+            description: Error
+        security:
+          - JWT: []
+  /users/{user_id}/events/{event_id}/votes/{vote_id}/vote:
+    delete:
+      tags: 
+        - vote
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: vote_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1  
+      responses:
+        '200':
+          description: Vote erased
+          schema:
+            $ref: '#/definitions/Event'
+        '401':
+          description: Not logged in
+        '404':
+          description: Vote doesn't exist 
+      security:
+        - JWT: []  
 securityDefinitions:
   JWT:
     type: apiKey
@@ -639,6 +885,32 @@ definitions:
       name: "nom event id 2"
       date: "22/11/22"
       
+  ArrayOfComments:
+    type: array
+    items:
+      $ref: '#/definitions/Comment'
+    example:
+    - comment_id: 1
+      content: "Primer comentari"
+      event_id: 1
+      user_id: 1
+    - comment_id: 2
+      content: "Segon i últim comentari"
+      event_id: 1
+      user_id: 2
+      
+  ArrayOfVotes:
+    type: array
+    items:
+      $ref: '#/definitions/Vote'
+    example:
+    - vote_id: 1
+      event_id: 1
+      user_id: 1
+    - vote_id: 2
+      event_id: 1
+      user_id: 2
+      
   Event:
     type: object
     required: 
@@ -673,3 +945,45 @@ definitions:
       address: 'Carrer ja funciona'
       name: 'Festa del carrer'
       date: '10/10/2020'
+      
+  Comment:
+    type: object
+    required: 
+      - 'comment_id, event_id, user_id, content'
+    properties:
+      comment_id:
+        type: integer
+        minimum: 1
+      event_id:
+        type: integer
+      user_id:
+        type: integer
+      content:
+        type: string
+    example: 
+      comment_id: 1
+      event_id: 1
+      user_id: 1
+      content: 'Estic orgullós dhaver fet aquest comentari i que funcioni'
+  
+  Vote:
+    type: object
+    required: 
+      - 'vote_id, event_id, user_id'
+    properties:
+      vote_id:
+        type: integer
+        minimum: 1
+      event_id:
+        type: integer
+      user_id:
+        type: integer
+      content:
+        type: string
+    example: 
+      vote_id: 1
+      event_id: 1
+      user_id: 1
+      
+      
+    
