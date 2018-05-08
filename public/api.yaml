@@ -276,12 +276,11 @@ paths:
         '200':
           description: The user was deleted
         '401':
-          description: >-
-            You don't have permission to delete that user / Not logged in
+          description: You don't have permission to delete that user / Not logged in
         '404':
           description: User does not exist
         '409':
-          description: 'The user is already deleted / Error deleting user'
+          description: The user is already deleted / Error deleting user
       security:
         - JWT: []
   /locations/universities:
@@ -552,6 +551,8 @@ definitions:
       user_id:
         type: integer
         minimum: 1
+      username:
+        type: string
       full_name:
         type: string
       biography:
@@ -574,6 +575,7 @@ definitions:
         type: string
     example:
       user_id: 1
+      username: alexcmillan
       full_name: Alex Calle Millan
       biography: I like memes
       karma: 0
