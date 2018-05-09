@@ -1,6 +1,10 @@
 class ProfileSerializer < ActiveModel::Serializer
-  attributes :user_id, :full_name, :biography, :karma, :country_code, :university, :university_id, :faculty, :faculty_id, :avatarURL
+  attributes :user_id, :username, :full_name, :biography, :karma, :country_code, :university, :university_id, :faculty, :faculty_id, :avatarURL
 
+  def username
+    object.user.username
+  end
+  
   def university
     object.faculty.university.name
   end

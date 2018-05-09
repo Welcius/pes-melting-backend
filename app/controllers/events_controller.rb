@@ -38,7 +38,7 @@ class EventsController < ApplicationController
             if event.nil?
                 sendStatus("Event does not exist", :not_found)
             else
-                render json: { event: event, location: Location.find_by_id(event.location_id)}, status: :ok
+                render json: event
             end
         end
             

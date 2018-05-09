@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :votes
-  resources :comments
-  resources :events
-  resources :users
-  #  root 'events#new'
   
     get '/users/:user_id/events', to: 'events#index' #<- ok
     post '/users/:user_id/events', to: 'events#create' #<- ok
@@ -32,10 +26,13 @@ Rails.application.routes.draw do
 
   scope 'users' do
     scope ':user_id' do
-      get 'profile', to: 'profiles#show'
-      post 'profile', to: 'profiles#create'
-      put 'profile', to: 'profiles#update'
-      post 'profile/avatar', to: 'profiles#set_avatar'
+      delete '', to: 'users#delete'
+      scope 'profile' do
+        get '', to: 'profiles#show'
+        post '', to: 'profiles#create'
+        put '', to: 'profiles#update'
+        post 'avatar', to: 'profiles#set_avatar'
+      end
     end
   end
   
