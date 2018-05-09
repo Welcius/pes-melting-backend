@@ -396,11 +396,7 @@ paths:
               date: 22/06/2020
       responses:
         '201':
-<<<<<<< HEAD
           description: Event created successfully
-=======
-          description: Eevent created successfully
->>>>>>> 46571a350d6a95eff6232adf314fbf410fa50340
           schema:
             $ref: '#/definitions/Event'
         '401':
