@@ -10,7 +10,6 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 
 # gems afegides
-gem 'rack-cors'                       # cors
 gem 'email_address', '~> 0.1.8'       # validació de correus electrònics
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'   # hashing de contrassenyes
 gem 'knock'                           # tokens de login
@@ -25,6 +24,7 @@ gem 'rails-erd', group: :development  # generació de diagrama de la BD
 gem  'json'                           
 gem  'httparty'    
 gem 'fast_jsonapi', '~> 1.1', '>= 1.1.1'
+gem  'sidekiq'
 # fi gems afegides
 
 group :development, :test do
