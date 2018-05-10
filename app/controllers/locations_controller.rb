@@ -27,7 +27,7 @@ class LocationsController < ApplicationController::Base
         
      obj1 = University_struct.new()
      obj2 = Faculty_struct.new()
-    ServiceStaticInfoJob.perform_later(obj1,obj2) #falta  poner tiempo y hacerlo background
+    ServiceStaticInfoJob.set(wait: 1.month).perform_later(obj1,obj2) #falta  poner tiempo y hacerlo background
     
     
     if(obj1!=nil and obj2 != nil)
