@@ -22,6 +22,7 @@ gem 'mini_magick'                     # dependències de shrine
 gem 'geocoder'                        # informació d'ubicació geogràfica
 gem 'active_model_serializers'        # serialització de models
 gem 'rails-erd', group: :development  # generació de diagrama de la BD
+gem 'rest-client', '~> 1.8'           # crides a apis
 # fi gems afegides
 
 group :development, :test do
