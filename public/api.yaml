@@ -283,7 +283,7 @@ paths:
           description: The user is already deleted / Error deleting user
       security:
         - JWT: []
-  /locations/universities:
+  '/locations/universities':
     get:
       tags:
         - location
@@ -321,6 +321,26 @@ paths:
           description: University doesn't exist
       security:
         - JWT: []
+        
+  '/locations/{user_id}/showFacultyInfo':
+    get:
+      tags:
+        - location
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: Faculty info displayed
+        '404' :
+          description: Faculty or user does not exist
+      security:
+        - JWT: []      
   '/users/{user_id}/events':
     get:
       tags:

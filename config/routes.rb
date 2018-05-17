@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   scope 'locations' do
     get 'universities', to: 'locations#index', defaults: {type: 'University'}
     get 'universities/:university_id/faculties', to: 'locations#index', defaults: {type: 'Faculty'}
+    post '{user_id}/showFacultyInfo', to: 'locations#showFacultyInfo'
   end
 
 end

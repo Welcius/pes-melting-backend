@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505132935) do
+ActiveRecord::Schema.define(version: 20180517091347) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
