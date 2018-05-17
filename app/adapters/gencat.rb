@@ -13,7 +13,7 @@ class Gencat
     def list_of_universities
         res = []
         for uni in @@universities['items']
-            res << {'title' => uni['titol'], 
+            res << {'name' => uni['titol'], 
                     'alias' => uni['nickname'], 
                     'url' => uni['url'], 
                     'address' => uni['adreca']['carrer'],
@@ -27,7 +27,7 @@ class Gencat
     def list_of_faculties
         res = []
         for fac in @@faculties['items']
-            res << {'title' => fac['titol'], 
+            res << {'name' => fac['titol'], 
                     'alias' => fac['nickname'], 
                     'url' => fac['url'], 
                     'address' => fac['adreca']['carrer'],

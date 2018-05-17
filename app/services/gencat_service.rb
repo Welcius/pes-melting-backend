@@ -14,7 +14,7 @@ class GencatService
                                              'categories.subtema' => 'Estructures universitàries',
                                              'categories.subtema2' => 'Universitats'
                                              })
-        data = JSON.parse(response)
+        JSON.parse(response)
     end
     
     def getFaculties
@@ -24,6 +24,6 @@ class GencatService
                                              'categories.tema' => 'Universitats',
                                              'categories.subtema' => 'Facultats i escoles'
                                              })
-        data = JSON.parse(response)
+        JSON.parse(response)
     end
 end
