@@ -15,5 +15,9 @@
 #ubfis = Faculty.create(:name => 'Facultat de Física', :latitude => 41.3844004, :longitude => 2.1171888999999737, :university => ub)
 
 User.create(:email => "alex.cmillan@outlook.com", :username => "alexcmillan", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
+User.create(:email => "laufipe@gmail.com", :username => "laufipe", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
+User.create(:email => "adolfoo.bcn@gmail.com", :username => "adolfo", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
+User.create(:email => "carlavareap14@gmail.com", :username => "carlavarea", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
+
 
 GatherGencatDataJob.perform_now
