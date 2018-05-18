@@ -19,6 +19,8 @@ User.create(:email => "laufipe@gmail.com", :username => "laufipe", :password => 
 User.create(:email => "adolfoo.bcn@gmail.com", :username => "adolfo", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
 User.create(:email => "carlavareap14@gmail.com", :username => "carlavarea", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
 User.create(:email => "uapllenobrac@gmail.com", :username => "paucarbonell", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
+User.create(:email => "sara.bourjila@gmail.com", :username => "sarabourjila", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
 User.create(:email => "ismael.aik@gmail.com", :username => "ismael", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
+
 
 GatherGencatDataJob.perform_now
