@@ -17,7 +17,7 @@ class GatherGencatDataJob < ApplicationJob
       uni_alias = fac['name'][/\(.*?\)/][1..-2]
       u = University.find_by_alias(uni_alias)
       if not u.nil?
-        f = Faculty.create(:name => fac['name'], :latitude => fac['latitude'], :longitude => fac['longitude'], :address => fac['address'], :url => fac['url'], :telephone => fac['telephone'], :university_id => u.id)
+        Faculty.create(:name => fac['name'], :latitude => fac['latitude'], :longitude => fac['longitude'], :address => fac['address'], :url => fac['url'], :telephone => fac['telephone'], :university_id => u.id)
       end
     end
     puts "Gathering finished"
