@@ -229,6 +229,31 @@ paths:
           description: Profile already exists
       security:
         - JWT: []
+  '/users/{user_id}/profile/faculty':
+      get:
+        tags:
+          - user
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - name: user_id
+            in: path
+            required: true
+            type: integer
+            minimum: 1
+        responses:
+          '200':
+            description: Shows faculty associated to profile
+            schema:
+              $ref: '#/definitions/Location'
+          '401':
+            description: Not logged in
+          '404':
+            description: User doesn't exist / Profile not created yet
+        security:
+          - JWT: []
   '/users/{user_id}/profile/avatar':
     post:
       tags:
@@ -595,12 +620,27 @@ definitions:
         minimum: 1
       name:
         type: string
+      alias:
+        type: string
       address:
+        type: string
+      telephone:
+        type: string
+      url:
         type: string
       latitude:
         type: number
       longitude:
         type: number
+    example:
+      - location_id: 4
+        name: Facultat de Matemàtiques i Estadística (UPC)
+        alias: null
+        address: Carrer de Pau Gargallo, 6, 08028 Barcelona, Spain
+        telephone: 934015880
+        url: www.fme.upc.edu
+        latitude: 41.383191804750055
+        longitude: 2.1138632716911054
   ArrayOfUniversities:
     type: array
     items:
