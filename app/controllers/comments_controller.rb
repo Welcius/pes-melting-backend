@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
         include CommentsHelper
         
         def index
-          event = Event.find(params[:event_id])
+          event = Comment.find(params[:user_id])
           comments = event.comments
           render json: comments
         end

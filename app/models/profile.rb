@@ -13,6 +13,11 @@ class Profile < ApplicationRecord
     validates_uniqueness_of :user_id
     validate :location_ref_must_be_a_faculty
     
+    #search
+    
+    include PgSearch
+    pg_search_scope :search, against: [:full_name]
+    
     def country
        ISO3166::Country.find_country_by_alpha2(:country_code).name
     end

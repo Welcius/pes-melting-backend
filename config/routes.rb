@@ -14,9 +14,12 @@ Rails.application.routes.draw do
     get '/users/:user_id/events/:event_id/votes', to: 'votes#index' #<- ok
     post '/users/:user_id/events/:event_id/votes', to: 'votes#create' #<- ok
     delete '/users/:user_id/events/:event_id/votes/:event_id/vote', to: 'votes#destroy' #<- ok
- 
-
- 
+    
+    get '/search/events', to: 'searches#event'
+    get '/search/profiles', to: 'searches#profile'
+    get '/search/universities', to: 'searches#university'
+    get '/search/faculties', to: 'searches#faculty'
+    
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope '/auth' do
     post 'register', to: 'users#register'
