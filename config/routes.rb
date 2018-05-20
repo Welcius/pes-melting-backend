@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         post '', to: 'profiles#create'
         put '', to: 'profiles#update'
         post 'avatar', to: 'profiles#set_avatar'
+        get 'faculty', to: 'profiles#show_faculty'
       end
     end
   end

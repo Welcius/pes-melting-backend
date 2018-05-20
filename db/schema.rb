@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517170337) do
+
+ActiveRecord::Schema.define(version: 20180517211238) do
+
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -50,6 +52,9 @@ ActiveRecord::Schema.define(version: 20180517170337) do
     t.string "name"
     t.string "type"
     t.integer "university_id"
+    t.string "alias"
+    t.string "telephone"
+    t.string "url"
     t.index ["university_id"], name: "index_locations_on_university_id"
   end
 

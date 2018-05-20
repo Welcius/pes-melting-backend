@@ -229,6 +229,31 @@ paths:
           description: Profile already exists
       security:
         - JWT: []
+  '/users/{user_id}/profile/faculty':
+      get:
+        tags:
+          - user
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - name: user_id
+            in: path
+            required: true
+            type: integer
+            minimum: 1
+        responses:
+          '200':
+            description: Shows faculty associated to profile
+            schema:
+              $ref: '#/definitions/Location'
+          '401':
+            description: Not logged in
+          '404':
+            description: User doesn't exist / Profile not created yet
+        security:
+          - JWT: []
   '/users/{user_id}/profile/avatar':
     post:
       tags:
@@ -950,42 +975,69 @@ definitions:
         minimum: 1
       name:
         type: string
+      alias:
+        type: string
       address:
+        type: string
+      telephone:
+        type: string
+      url:
         type: string
       latitude:
         type: number
       longitude:
         type: number
+    example:
+      - location_id: 4
+        name: Facultat de Matemàtiques i Estadística (UPC)
+        alias: null
+        address: Carrer de Pau Gargallo, 6, 08028 Barcelona, Spain
+        telephone: 934015880
+        url: www.fme.upc.edu
+        latitude: 41.383191804750055
+        longitude: 2.1138632716911054
   ArrayOfUniversities:
     type: array
     items:
       $ref: '#/definitions/Location'
     example:
-      - location_id: 1
-        name: Universitat Politècnica de Catalunya
-        address: 'Carrer de Jordi Girona, 26, 08034 Barcelona, Spain'
-        latitude: 41.3880816726885
-        longitude: 2.11546764026158
-      - location_id: 4
-        name: Universitat de Barcelona
-        address: 'Gran Via de les Corts Catalanes, 596, 08007 Barcelona, Spain'
-        latitude: 41.3868156029942
-        longitude: 2.16481325453837
+    - location_id : 1
+      name : Universitat Pompeu Fabra
+      alias : UPF
+      address : Edif. Mercè, Plaça de la Mercè, 10-12, 08002 Barcelona, Spain
+      telephone : 935422000
+      url : www.upf.edu
+      latitude : 41.378949261870424
+      longitude : 2.1794413405262176
+    - location_id : 2
+      name : Universitat Politècnica de Catalunya
+      alias : UPC
+      address : Carrer de Jordi Girona, 26, 08034 Barcelona, Spain
+      telephone : 934016100
+      url : www.upc.es
+      latitude : 41.38808167268847
+      longitude : 2.115467640261582
   ArrayOfFaculties:
     type: array
     items:
       $ref: '#/definitions/Location'
     example:
-      - location_id: 2
-        name: Facultat d' Informàtica de Barcelona
-        address: 'carrer de John Maynard Keynes, 27-35, 08034 Barcelona, Spain'
-        latitude: 41.3894841
-        longitude: 2.11338590000003
-      - location_id: 3
-        name: Escola Tècnica Superior d'Enginyeria Industrial de Barcelona
-        address: 'Avinguda Diagonal, 647, 08028 Barcelona, Spain'
-        latitude: 41.3847924
-        longitude: 2.11563799999999
+    - location_id: 3
+      name: Facultat de Nàutica de Barcelona (UPC)
+      alias: null
+      address: Pla de Palau, 19, 08003 Barcelona, Spain
+      telephone: 934017941
+      url: www.fnb.upc.edu
+      latitude: 41.38217610786729
+      longitude: 2.184180862935203
+    - location_id: 4
+      name: Facultat de Matemàtiques i Estadística (UPC)
+      alias: null
+      address: Carrer de Pau Gargallo, 6, 08028 Barcelona, Spain
+      telephone: 934015880
+      url: www.fme.upc.edu
+      latitude: 41.383191804750055
+      longitude: 2.1138632716911054
   ArrayOfEvents:
     type: array
     items:
