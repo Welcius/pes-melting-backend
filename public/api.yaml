@@ -864,6 +864,32 @@ paths:
             description: Error
         security:
           - JWT: []
+  /users/{user_id}/events/{event_id}: 
+    get:
+      tags: 
+        - vote
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          minimum: 1 
+      responses:
+        '200':
+          description: Vote (0/1)
+        '401':
+          description: Not logged in
+        '404':
+          description: Vote doesn't exist
+      security:
+        - JWT: []
   /users/{user_id}/events/{event_id}/votes/{vote_id}/vote:
     delete:
       tags: 

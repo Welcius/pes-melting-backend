@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get '/users/:user_id/events/:event_id/votes', to: 'votes#index' #<- ok
     post '/users/:user_id/events/:event_id/votes', to: 'votes#create' #<- ok
     delete '/users/:user_id/events/:event_id/votes/:event_id/vote', to: 'votes#destroy' #<- ok
+    get '/users/:user_id/events/:event_id', to: 'votes#assist' #<- ok
     
     get '/search/events', to: 'searches#event'
     get '/search/profiles', to: 'searches#profile'

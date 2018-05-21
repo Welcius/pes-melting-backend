@@ -51,6 +51,14 @@ class VotesController < ApplicationController
       sendStatus("Current user != creator of the event or the user didnt voted", :conflict, vote.errors) 
     end
   end
+  
+  def assist
+     if !(Vote.find_by(user_id: current_user.id, event_id: params[:event_id])).nil?
+       render json: 1
+     else 
+       render json: 0
+     end
+  end
 
 
   private
