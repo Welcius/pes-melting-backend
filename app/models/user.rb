@@ -10,6 +10,8 @@ class User < ApplicationRecord
     validates :username, uniqueness: {message: "has already been taken" }
     validates :email, uniqueness: {message: "has already been taken" }
     
+    validates_associated :messages
+    
     def to_token_payload
         {sub: id, role: role, last_status: last_status}
     end

@@ -23,4 +23,7 @@ User.create(:email => "sara.bourjila@gmail.com", :username => "sarabourjila", :p
 User.create(:email => "ismael.aik@gmail.com", :username => "ismael", :password => "12345678", :code => 'abcdef', :last_status => 0, :activated => true)
 
 
+
 GatherGencatDataJob.perform_now
+
+Chatroom.create(:id => 1, :name => "Main")

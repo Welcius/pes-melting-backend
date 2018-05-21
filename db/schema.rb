@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517211238) do
+ActiveRecord::Schema.define(version: 20180521144809) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer "profile_id"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 20180517211238) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_avatars_on_profile_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -56,6 +62,17 @@ ActiveRecord::Schema.define(version: 20180517211238) do
     t.index ["university_id"], name: "index_locations_on_university_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "chatroom_id"
+    t.integer "user_id"
+    t.text "body"
+    t.integer "utc_timestamp"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -91,6 +108,7 @@ ActiveRecord::Schema.define(version: 20180517211238) do
     t.string "role", default: "student", null: false
     t.integer "last_status"
     t.boolean "account_deleted", default: false
+    t.integer "last_chat_heartbeat"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

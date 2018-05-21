@@ -45,5 +45,12 @@ Rails.application.routes.draw do
     get 'universities', to: 'locations#index', defaults: {type: 'University'}
     get 'universities/:university_id/faculties', to: 'locations#index', defaults: {type: 'Faculty'}
   end
+  
+  scope 'chat' do
+    # Com que només hi ha un chatroom, passem un paràmetre d'id explícit 1
+    get 'users', to: 'chatrooms#connected_users_profiles', defaults: {id: 1}
+    get 'messages', to: 'chatrooms#get_messages', defaults: {id: 1}
+    post 'messages', to: 'chatrooms#send_message', defaults: {id: 1}
+  end
 
 end
