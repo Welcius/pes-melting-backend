@@ -5,10 +5,13 @@ class User < ApplicationRecord
     has_many :events
     has_many :comments
     has_many :votes
+    has_many :messages
     validates_presence_of :username, :email, :code, :last_status
     
     validates :username, uniqueness: {message: "has already been taken" }
     validates :email, uniqueness: {message: "has already been taken" }
+    
+    validates_associated :messages
     
     def to_token_payload
         {sub: id, role: role, last_status: last_status}

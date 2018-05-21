@@ -924,7 +924,78 @@ paths:
         '404':
           description: Vote doesn't exist 
       security:
-        - JWT: [] 
+        - JWT: []
+  /chat/users:
+    get:
+      tags:
+        - chat
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: List of connected users profiles retrieved correctly
+          schema:
+            $ref: '#/definitions/ArrayOfProfiles'
+        '404':
+          description: Chatroom does not exist
+        '400':
+          description: Missing fields
+        '401':
+          description: Not logged in
+      security:
+      - JWT: []
+  /chat/messages:
+    get:
+      tags:
+        - chat
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: since
+          in: query
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: List of messages retrieved correctly
+          schema:
+            $ref: '#/definitions/ArrayOfChatMessages'
+        '404':
+          description: Chatroom does not exist / User profile was not found
+        '400':
+          description: Missing fields
+        '401':
+          description: Not logged in
+      security:
+      - JWT: []
+    post:
+      tags:
+      - chat
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: formData
+          type: string
+      responses:
+        '201':
+          description: Message sent sucessfully
+          schema:
+            $ref: '#/definitions/ChatMessage'
+        '404':
+          description: Chatroom does not exists / User profile not found
+        '400':
+          description: Missing fields / Message body can't be blank
+        '401':
+          description: Not logged in
+      security:
+      - JWT: []    
 securityDefinitions:
   JWT:
     type: apiKey
@@ -991,6 +1062,33 @@ definitions:
       faculty: Facultat d'Informàtica de Barcelona
       faculty_id: 2
       avatarURL: /uploads/store/e6008535fefa27266fe80db3ecf07a2a.jpg
+  ArrayOfProfiles:
+    type: array
+    items:
+      $ref: '#/definitions/Profile'
+    example:
+    - user_id: 4
+      username: carlavarea
+      full_name: Carla Varea Parra
+      biography: Life is a meme
+      karma: 10
+      country_code: ES
+      university: Universitat Politècnica de Catalunya
+      university_id: 1
+      faculty: Facultat d'Informàtica de Barcelona
+      faculty_id: 2
+      avatarURL: /uploads/store/b52598828d28445193b5f6830cc46275.jpg
+    - user_id: 3
+      username: adolfo
+      full_name: Adolfo López Oyarzabal
+      biography: Billete, por favó
+      karma: -200
+      country_code: ES
+      university: Universitat Politècnica de Catalunya
+      university_id: 1
+      faculty: Facultat d'Informàtica de Barcelona
+      faculty_id: 2
+      avatarURL: /uploads/store/cd2b3b58ed54ed77ba26bf93993f4f75.jpg
   Location:
     type: object
     required:
@@ -1186,3 +1284,31 @@ definitions:
       address: Carrer ja funciona
       name: Festa del carrer
       date: 10/10/2020
+  ChatMessage:
+    type: object
+    required:
+    - body
+    properties:
+      body:
+        type: string
+      user_id:
+        type: integer
+        minimum: 1
+      utc_timestamp:
+        type: integer
+        minimum: 0
+    example:
+      body: Free Pizza
+      user_id: 1
+      utc_timestamp: 1526942307
+  ArrayOfChatMessages:
+    type: array
+    items:
+      $ref: '#/definitions/ChatMessage'
+    example:
+    - body: I just got free pizza in my campus!
+      user_id: 1
+      utc_timestamp: 1526942307
+    - body: WHERE????
+      user_id: 2
+      utc_timestamp: 1526942340
