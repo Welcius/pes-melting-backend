@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :events
     has_many :comments
     has_many :votes
+    has_many :messages
     validates_presence_of :username, :email, :code, :last_status
     
     validates :username, uniqueness: {message: "has already been taken" }
