@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
     end
     
     def profile
-        profile = Profile.where("full_name ILIKE ? OR full_name ILIKE ? OR full_name ILIKE ? OR user_id ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%", (User.find_by(username: params[:query])).user_id.to_i) 
+        profile = Profile.where("full_name ILIKE ? OR full_name ILIKE ? OR full_name ILIKE ? OR user_id ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%", (User.find_by(username: params[:query])).id) 
         render json: profile
     end
     
