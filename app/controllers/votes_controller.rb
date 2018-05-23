@@ -59,6 +59,12 @@ class VotesController < ApplicationController
        render json: 0
      end
   end
+  
+  def assistants
+    event = Event.find(params[:event_id])
+    votes = event.votes
+    render json: votes, :only=>  [:user_id]
+  end
 
 
   private
