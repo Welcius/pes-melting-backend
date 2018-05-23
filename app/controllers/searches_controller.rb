@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
     end
     
     def university
-        university = Location.where("name ILIKE ? OR name ILIKE ? OR name ILIKE ? OR alias ILIKE ? OR AND type ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%", params[:query], "University")
+        university = Location.where("name ILIKE ? OR name ILIKE ? OR name ILIKE ? OR alias ILIKE ? OR AND type ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%", "University")
         render json: university
     end
     
@@ -14,8 +14,8 @@ class SearchesController < ApplicationController
         render json: profile
     end
     
-    #fet -> substring, buscar per alias, majuscula funciona?
-    #mira de buscar per username
+    #fet -> substring, buscar per alias, majuscula
+    #mira de buscar per username -> FALTA
     #####
     ###
     ####
