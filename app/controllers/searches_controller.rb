@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
     end
     
     def university
-        university = Location.where("name ILIKE ? OR name ILIKE ? OR name ILIKE ? OR alias ILIKE ? AND type ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%", "University").where.not(alias: [nil, ""])
+        university = Location.where("name ILIKE ? OR name ILIKE ? OR name ILIKE ? OR alias ILIKE ? AND type ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%", "University").and.where.not(alias: "null")
         render json: university
     end
     
@@ -18,15 +18,7 @@ class SearchesController < ApplicationController
         profile = Profile.where("full_name ILIKE ? OR full_name ILIKE ? OR full_name ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
         render json: profile
     end
-    
-    
-    #fet -> substring, buscar per alias, majuscula
-    #mira de buscar per username -> FALTA
-    #####
-    ###
-    ####
-    
-    
+
     
     # def review
     #     review = Review.search(params[:query])
