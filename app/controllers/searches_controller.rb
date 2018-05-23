@@ -10,9 +10,10 @@ class SearchesController < ApplicationController
     end
     
     def profile
-        profile = Profile.where("full_name ILIKE ? OR full_name ILIKE ? OR full_name ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%") 
+        profile = Profile.where("full_name ILIKE ? OR full_name ILIKE ? OR full_name ILIKE ? OR user_id ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%", (User.find_by(username: params[:query])).user_id) 
         render json: profile
     end
+    
     
     #fet -> substring, buscar per alias, majuscula
     #mira de buscar per username -> FALTA
