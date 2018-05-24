@@ -31,7 +31,7 @@ class VotesController < ApplicationController
     vote = Vote.new
     if(Vote.find_by(user_id: current_user.id, event_id: params[:event_id]).nil? and same_user_as_current(params[:user_id].to_i))  
       vote.user_id = current_user.id
-      vote.event_id = (params[:event_id])
+      vote.event_id = (params[:event_id]).to_i
       if vote.save
         render json: vote, status: :created  
       else
@@ -43,12 +43,13 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    vote = Vote.find_by(params[:vote_id])
+    vote = Vote.find_by(user_id: params[:user_id],event_id:  params[:event_id])
     if not vote.nil? and same_user_as_current(vote.user_id)
       vote.destroy
-      render json: vote, status: :destroy
+      render json: vote
     else
-      sendStatus("Current user != creator of the event or the user didnt voted", :conflict, vote.errors) 
+      render json: vote
+      #sendStatus("Current user != creator of the event or the user didnt voted", :conflict, vote.errors) 
     end
   end
   
