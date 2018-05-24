@@ -15,4 +15,14 @@ class LocationsController < ApplicationController
             render json: Location.where(:type => params[:type])
         end
     end
+    
+    def show
+        loc = Location.find_by_id(params[:id].to_i)
+        if not loc.nil?
+            render json: loc
+        else
+            sendStatus("Location does not exist", :not_found)
+        end
+    end
+    end
 end
