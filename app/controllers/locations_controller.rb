@@ -24,5 +24,4 @@ class LocationsController < ApplicationController
             sendStatus("Location does not exist", :not_found)
         end
     end
-    end
 end
