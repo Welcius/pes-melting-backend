@@ -890,7 +890,7 @@ paths:
           description: Vote doesn't exist
       security:
         - JWT: []
-  /users/{user_id}/events/{event_id}/votes/{vote_id}/vote:
+  /users/{user_id}/events/{event_id}/vote:
     delete:
       tags: 
         - vote
@@ -909,16 +909,11 @@ paths:
           required: true
           type: integer
           minimum: 1
-        - name: vote_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1  
       responses:
         '200':
           description: Vote erased
           schema:
-            $ref: '#/definitions/Event'
+            $ref: '#/definitions/Vote'
         '401':
           description: Not logged in
         '404':
