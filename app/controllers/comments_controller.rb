@@ -55,7 +55,6 @@ class CommentsController < ApplicationController
             event = Event.find_by_id(params[:event_id])
             if((comment.event_id == event.id) || same_user_as_current(comment.user_id))
               comment.destroy
-              render json: comment, status: :destroy   
             else
               sendStatus("Current user != creator of the event", :conflict, comment.errors) 
             end  
