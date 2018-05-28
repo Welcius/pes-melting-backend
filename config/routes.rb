@@ -43,9 +43,9 @@ Rails.application.routes.draw do
   end
   
   scope 'locations' do
-    get ':id', to: 'locations#show'
     get 'universities', to: 'locations#index', defaults: {type: 'University'}
     get 'universities/:university_id/faculties', to: 'locations#index', defaults: {type: 'Faculty'}
+    get ':id', to: 'locations#show'
   end
   
   scope 'chat' do
