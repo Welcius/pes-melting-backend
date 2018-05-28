@@ -53,12 +53,15 @@ class CommentsController < ApplicationController
         def destroy    
             comment = Comment.find_by_id(params[:comment_id])
             event = Event.find_by_id(params[:event_id])
-            if((comment.event_id == event.id) || same_user_as_current(comment.user_id))
+            if(event.nil? || comment.nil?) 
+                raise ActionController::RoutingError.new('Not Found')
+            else if((comment.event_id == event.id) && same_user_as_current(comment.user_id))
               comment.destroy
             else
               sendStatus("Current user != creator of the event", :conflict, comment.errors) 
             end  
-        end    
+            end    
+        end
     
         private    
 
@@ -76,4 +79,4 @@ class CommentsController < ApplicationController
             end    
         end     
 
-    end
+end
