@@ -1,8 +1,9 @@
 class Event < ApplicationRecord
-    belongs_to :user, optional: true
-	has_many :comments
-	has_many :votes
+    belongs_to :user
+	has_many :comments, dependent: :destroy 
+	has_many :votes, dependent: :destroy 
     belongs_to :location
+    
     
     #search
     

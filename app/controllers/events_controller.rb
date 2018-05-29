@@ -34,9 +34,9 @@ class EventsController < ApplicationController
         end    
 
         def show   
-            event = Event.find_by_id(params[:event_id])
+            event = Event.where(user_id: params[:user_id])
             if event.nil?
-                sendStatus("Event does not exist", :not_found)
+                sendStatus("No events for the current user", :not_found)
             else
                 render json: event
             end

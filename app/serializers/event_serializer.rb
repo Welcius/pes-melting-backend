@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :latitude, :longitude, :address, :name, :date
+  attributes :id, :title, :description, :latitude, :longitude, :address, :name, :date, :user_id
   
   def latitude
       object.location.latitude
@@ -16,5 +16,4 @@ class EventSerializer < ActiveModel::Serializer
   def name
       object.location.name
   end
-  
 end

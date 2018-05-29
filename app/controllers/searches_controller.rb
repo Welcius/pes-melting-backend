@@ -1,21 +1,21 @@
 class SearchesController < ApplicationController
     def event 
-        event = Event.where("title ILIKE ? OR title ILIKE ? OR title ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
+        event = Event.where("title LIKE ? OR title LIKE ? OR title LIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
         render json: event
     end
 
     def faculty
-        faculty = Location.where("name ILIKE ? OR name ILIKE ? OR name ILIKE ? OR alias ILIKE ? AND type ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%", params[:query], "Faculty") 
+        faculty = Faculty.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR alias LIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%", params[:query]) 
         render json: faculty
     end
     
     def university
-        university = Location.where("name ILIKE ? OR name ILIKE ? OR name ILIKE ? OR alias ILIKE ? AND type ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%", "University")
+        university = University.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR alias LIKE ? ", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%")
         render json: university
     end
     
     def profile
-        profile = Profile.where("full_name ILIKE ? OR full_name ILIKE ? OR full_name ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
+        profile = Profile.joins(:user).where("username LIKE ? OR username LIKE ? OR username LIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
         render json: profile
     end
 

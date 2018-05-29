@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   
-    get '/users/:user_id/events', to: 'events#index' #<- ok
+    get '/events', to: 'events#index' #<- ok
     post '/users/:user_id/events', to: 'events#create' #<- ok
     put '/users/:user_id/events/:event_id/event', to: 'events#update' #<- ok
     delete '/users/:user_id/events/:event_id/event', to: 'events#destroy' #F<- ok
-    get '/events/:event_id/event', to: 'events#show' #<- ok
+    get '/users/:user_id/events', to: 'events#show' #<- ok
     
-    get '/users/:user_id/events/:event_id/comments', to: 'comments#index'  #<- ok
+    get '/events/:event_id/comments', to: 'comments#index'  #<- ok
     post '/users/:user_id/events/:event_id/comments', to: 'comments#create'  #<- ok
     put '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#update'#<- ok
     delete '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#destroy'#<- ok
