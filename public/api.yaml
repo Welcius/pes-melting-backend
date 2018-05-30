@@ -760,18 +760,13 @@ paths:
           description: Comment doesn't exist 
       security:
         - JWT: []  
-  /users/{user_id}/events/{event_id}/votes: 
+  /events/{event_id}/attendees:
     get:
       tags: 
         - vote
       produces:
         - application/json
       parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
         - name: event_id
           in: path
           required: true
@@ -781,13 +776,14 @@ paths:
         '200':
           description: List displayed correctly
           schema:
-            $ref: '#/definitions/ArrayOfVotes'
+            $ref: '#/definitions/ArrayOfProfiles'
         '401':
           description: Not logged in
         '404':
-          description: Votes doesn't exist
+          description: Event doesn't exist
       security:
         - JWT: []
+  /events/{event_id}/votes:
     post:
         tags:
           - vote
@@ -796,11 +792,6 @@ paths:
         produces:
           - application/json
         parameters:
-          - name: user_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
           - name: event_id
             in: path
             required: true
@@ -808,7 +799,7 @@ paths:
             minimum: 1
         responses:
           '201':
-            description: Comment created successfully
+            description: Vote successful
             schema:
               $ref: '#/definitions/Comment'
           '401':
@@ -817,18 +808,13 @@ paths:
             description: Error
         security:
           - JWT: []
-  /users/{user_id}/events/{event_id}: 
+  /events/{event_id}/votes/self: 
     get:
       tags: 
         - vote
       produces:
         - application/json
       parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
         - name: event_id
           in: path
           required: true
@@ -843,7 +829,6 @@ paths:
           description: Vote doesn't exist
       security:
         - JWT: []
-  /users/{user_id}/events/{event_id}/vote:
     delete:
       tags: 
         - vote
@@ -853,11 +838,6 @@ paths:
         - application/json
       parameters:
         - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: user_id
           in: path
           required: true
           type: integer

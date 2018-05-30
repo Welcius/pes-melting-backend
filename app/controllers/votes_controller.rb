@@ -12,13 +12,28 @@ class VotesController < ApplicationController
   include VotesHelper
 
   def index
-    event = Event.find(params[:event_id])
-    votes = event.votes.count
-    render json: votes
+    event = Event.find_by_id(params[:event_id].to_i)
+    if not event.nil?
+      votes = event.votes.count
+      render json: votes
+    else
+      sendStatus("Event doesn't exist")
+    end
   end
 
 
   def show
+    event = Event.find_by_id(params[:event_id].to_i)
+    if not event.nil?
+      vote = event.votes.find_by_user_id(current_user.id)
+      if not vote.nil?
+        render json: vote
+      else
+        sendStatus("User has not voted", :not_found)
+      end
+    else
+      sendStatus("Event doesn't exist", :not_found)
+    end
   end
 
   def new
@@ -29,43 +44,56 @@ class VotesController < ApplicationController
 
   def create
     vote = Vote.new
-    if(Vote.find_by(user_id: current_user.id, event_id: params[:event_id]).nil? and same_user_as_current(params[:user_id].to_i))  
-      vote.user_id = current_user.id
-      vote.event_id = (params[:event_id]).to_i
-      if vote.save
-        render json: vote, status: :created  
+    event = Event.find_by_id(params[:event_id].to_i)
+    if not event.nil?
+      if Vote.find_by(user_id: current_user.id, event_id: params[:event_id].to_i).nil?
+        vote.user_id = current_user.id
+        vote.event_id = (params[:event_id]).to_i
+        if vote.save
+          render json: vote, status: :created  
+        else
+          sendStatus("Error creating event", :conflict, vote.errors)
+        end
       else
-        sendStatus("Error creating event", :conflict, vote.errors)
+        sendStatus("Not more than 1 vote / user", :conflict, vote.errors)
       end
     else
-      sendStatus("Not more than 1 vote / user", :conflict, vote.errors)
+      sendStatus("Event doesn't exist", :not_found)
     end
   end
 
   def destroy
-    vote = Vote.find_by(user_id: params[:user_id],event_id:  params[:event_id])
-    if not vote.nil? and same_user_as_current(vote.user_id)
-      vote.destroy
-      render json: vote
+    event = Event.find_by_id(params[:event_id].to_i)
+    if not event.nil?
+      vote = Vote.find_by(user_id: current_user.id, event_id: params[:event_id].to_i)
+      if not vote.nil?
+        if same_user_as_current(vote.user_id)
+          vote.destroy
+          sendStatus("Vote erased", :ok)
+        else
+          sendStatus("Current user != creator of the event", :unauthorized) 
+        end
+      else
+        sendStatus("Vote not found", :not_found)
+      end
     else
-      render json: vote
-      #sendStatus("Current user != creator of the event or the user didnt voted", :conflict, vote.errors) 
+      sendStatus("Event doesn't exist", :not_found)
     end
   end
   
-  def assist
-     if !(Vote.find_by(user_id: current_user.id, event_id: params[:event_id])).nil?
-       render json: 1
-     else 
-       render json: 0
-     end
-  end
+  # def assist
+  #   if !(Vote.find_by(user_id: current_user.id, event_id: params[:event_id])).nil?
+  #     render json: 1
+  #   else 
+  #     render json: 0
+  #   end
+  # end
   
-  def assistants
-    event = Event.find(params[:event_id])
-    votes = event.votes
-    render json: votes, :only=>  [:user_id]
-  end
+  # def assistants
+  #   event = Event.find(params[:event_id])
+  #   votes = event.votes
+  #   render json: votes, :only=>  [:user_id]
+  # end
 
 
   private

@@ -1,18 +1,6 @@
 Rails.application.routes.draw do
-    
-    get '/users/:user_id/events/:event_id/votes', to: 'votes#index' #<- ok
-    post '/users/:user_id/events/:event_id/votes', to: 'votes#create' #<- ok
-    delete '/users/:user_id/events/:event_id/vote', to: 'votes#destroy' #<- ok
-    get '/users/:user_id/events/:event_id', to: 'votes#assist' #<- ok
-    get '/users/:user_id/events/:event_id/assistants', to: 'votes#assistants'
-    
-    get '/search/events', to: 'searches#event'
-    get '/search/profiles', to: 'searches#profile'
-    get '/search/universities', to: 'searches#university'
-    get '/search/faculties', to: 'searches#faculty'
-    
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  scope '/auth' do
+  scope 'auth' do
     post 'register', to: 'users#register'
     post 'activate', to: 'users#activate'
     post 'login' => 'user_token#create'
@@ -32,6 +20,13 @@ Rails.application.routes.draw do
     end
   end
   
+  scope 'search' do
+    get 'events', to: 'searches#event'
+    get 'profiles', to: 'searches#profile'
+    get 'universities', to: 'searches#university'
+    get 'faculties', to: 'searches#faculty'
+  end
+  
   scope 'comments' do
     scope ':comment_id' do
       put '', to: 'comments#update'
@@ -46,9 +41,17 @@ Rails.application.routes.draw do
       get '', to: 'events#show'
       put '', to: 'events#update'
       delete '', to: 'events#destroy'
+      get 'attendees', to: 'events#attendees'
       scope 'comments' do
         get '', to: 'comments#index'
         post '', to: 'comments#create'
+      end
+      scope 'votes' do
+        post '', to: 'votes#create'
+        scope 'self' do
+          get '', to: 'votes#show'
+          delete '', to: 'votes#destroy'
+        end
       end
     end
   end

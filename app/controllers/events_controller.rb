@@ -64,7 +64,7 @@ class EventsController < ApplicationController
         end
                 
         def destroy    
-            event = Event.find_by_id(params[:event_id])
+            event = Event.find_by_id(params[:event_id].to_i)
             if not event.nil?
                 if same_user_as_current(event.user_id)
                     event.destroy    
@@ -75,7 +75,20 @@ class EventsController < ApplicationController
             else
                 sendStatus("Event doesn't exist", :not_found)
             end
-        end    
+        end
+        
+        def attendees
+            event = Event.find_by_id(params[:event_id].to_i)
+            if not event.nil?
+                if event.votes.count == 0
+                    render :json => []
+                else
+                    render json: Profile.joins(:user => :votes).where('votes.event_id = ?', event.id)
+                end
+            else
+                sendStatus("Event doesn't exist", :not_found)
+            end
+        end
 
         private    
 

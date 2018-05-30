@@ -41,21 +41,20 @@ class CommentsController < ApplicationController
         def update    
             #event = Event.find_by_id(params[:event_id])
             comment = Comment.find_by_id((params[:comment_id]))
-            if same_user_as_current(comment.user_id)
-                if comment.nil?
-                    sendStatus("Comment does not exist", :not_found)
-                else
-                    c = comment.update(comment_params)
+            if not comment.nil?
+                if same_user_as_current(comment.user_id)
+                    comment.update(comment_params)
                   #  if e.update(event_params) and l.update(location_params)
-                        render json: { comment:comment}, status: :ok
+                    render json: { comment:comment}, status: :ok
                 #   else
                 #       sendStatus("Error modifying event", :conflict, e.errors) 
                   # end
+                else
+                    sendStatus("Current user != creator of the event", :conflict, event.errors) 
                 end
             else
-                sendStatus("Current user != creator of the event", :conflict, event.errors) 
+                sendStatus("Comment does not exist", :not_found)
             end
-            
         end
 
         def destroy    
