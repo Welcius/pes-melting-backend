@@ -12,21 +12,29 @@ class CommentsController < ApplicationController
         include CommentsHelper
         
         def index
-          event = Event.find(params[:event_id])
-          comments = event.comments
-          render json: comments
+          event = Event.find_by_id(params[:event_id].to_i)
+          if not event.nil?
+            comments = event.comments
+            render json: comments
+          else
+            sendStatus("Event not found", :not_found)
+          end
         end
         
         def create
-          event = Event.find(params[:event_id])
-          comment = event.comments.create(params[:comment].permit(:content))
-          comment.user_id=current_user.id if current_user
-          comment.save
-        
-          if comment.save
-            render json: comment, status: :created  
+          event = Event.find_by_id(params[:event_id].to_i)
+          if not event.nil?
+              comment = event.comments.create(params[:comment].permit(:content))
+              comment.user_id=current_user.id if current_user
+              comment.save
+            
+              if comment.save
+                render json: comment, status: :created  
+              else
+                sendStatus("Error creating comment", :conflict, comment.errors)  
+              end
           else
-            sendStatus("Error creating comment", :conflict, comment.errors)  
+              sendStatus("Event not found")
           end
         end   
         
@@ -52,14 +60,15 @@ class CommentsController < ApplicationController
 
         def destroy    
             comment = Comment.find_by_id(params[:comment_id])
-            event = Event.find_by_id(params[:event_id])
-            if(event.nil? || comment.nil?) 
-                raise ActionController::RoutingError.new('Not Found')
-            else if((comment.event_id == event.id) && same_user_as_current(comment.user_id))
-              comment.destroy
+            if comment.nil?
+              sendStatus("Comment not found", :not_found)
             else
-              sendStatus("Current user != creator of the event", :conflict, comment.errors) 
-            end  
+                if same_user_as_current(comment.user_id)
+                    comment.destroy
+                    sendStatus("Comment erased", :ok)
+                else
+                    sendStatus("Current user != creator of the event", :conflict, comment.errors) 
+                end
             end    
         end
     

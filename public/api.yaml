@@ -9,8 +9,18 @@ tags:
     description: Auth related endpoints
   - name: user
     description: User related endpoints
+  - name: search
+    description: Search related endpoints
   - name: location
     description: Location related endpoints
+  - name: chat
+    description: Chat related endpoints
+  - name: event
+    description: Event related endpoints
+  - name: comment
+    description: Comment related endpoints
+  - name: vote
+    description: Vote related endpoints
 schemes:
   - https
 paths:
@@ -655,7 +665,6 @@ paths:
           description: Comments doesn't exist
       security:
         - JWT: []
-  /users/{user_id}/events/{event_id}/comments:
     post:
         tags:
           - comment
@@ -664,11 +673,6 @@ paths:
         produces:
           - application/json
         parameters:
-          - name: user_id
-            in: path
-            required: true
-            type: integer
-            minimum: 1
           - name: event_id
             in: path
             required: true
@@ -697,7 +701,7 @@ paths:
             description: Error
         security:
           - JWT: []
-  /users/{user_id}/events/{event_id}/comments/{comment_id}/comment:
+  /comments/{comment_id}:
     put:
       tags:
         - comment
@@ -706,16 +710,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
         - name: comment_id
           in: path
           required: true
@@ -752,16 +746,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
         - name: comment_id
           in: path
           required: true
@@ -769,13 +753,11 @@ paths:
           minimum: 1  
       responses:
         '200':
-          description: Event erased
-          schema:
-            $ref: '#/definitions/Event'
+          description: Comment erased
         '401':
           description: Not logged in
         '404':
-          description: Event doesn't exist 
+          description: Comment doesn't exist 
       security:
         - JWT: []  
   /users/{user_id}/events/{event_id}/votes: 

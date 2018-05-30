@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-    post '/users/:user_id/events/:event_id/comments', to: 'comments#create'  #<- ok
-    put '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#update'#<- ok
-    delete '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#destroy'#<- ok
     
     get '/users/:user_id/events/:event_id/votes', to: 'votes#index' #<- ok
     post '/users/:user_id/events/:event_id/votes', to: 'votes#create' #<- ok
@@ -36,14 +32,24 @@ Rails.application.routes.draw do
     end
   end
   
-  scope '/events' do
+  scope 'comments' do
+    scope ':comment_id' do
+      put '', to: 'comments#update'
+      delete '', to: 'comments#destroy'
+    end
+  end
+  
+  scope 'events' do
     get '', to: 'events#index'
     post '', to: 'events#create'
     scope ':event_id' do
       get '', to: 'events#show'
       put '', to: 'events#update'
       delete '', to: 'events#destroy'
-      get 'comments', to: 'comments#index'
+      scope 'comments' do
+        get '', to: 'comments#index'
+        post '', to: 'comments#create'
+      end
     end
   end
   
