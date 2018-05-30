@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
-  
-    get '/events', to: 'events#index' #<- ok
-    post '/users/:user_id/events', to: 'events#create' #<- ok
-    put '/users/:user_id/events/:event_id/event', to: 'events#update' #<- ok
-    delete '/users/:user_id/events/:event_id/event', to: 'events#destroy' #F<- ok
-    get '/users/:user_id/events', to: 'events#show' #<- ok
-    
-    get '/events/:event_id/comments', to: 'comments#index'  #<- ok
+
     post '/users/:user_id/events/:event_id/comments', to: 'comments#create'  #<- ok
     put '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#update'#<- ok
     delete '/users/:user_id/events/:event_id/comments/:comment_id/comment', to: 'comments#destroy'#<- ok
@@ -32,6 +25,7 @@ Rails.application.routes.draw do
   scope 'users' do
     scope ':user_id' do
       delete '', to: 'users#delete'
+      get 'events', to: 'events#index'
       scope 'profile' do
         get '', to: 'profiles#show'
         post '', to: 'profiles#create'
@@ -39,6 +33,17 @@ Rails.application.routes.draw do
         post 'avatar', to: 'profiles#set_avatar'
         get 'faculty', to: 'profiles#show_faculty'
       end
+    end
+  end
+  
+  scope '/events' do
+    get '', to: 'events#index'
+    post '', to: 'events#create'
+    scope ':event_id' do
+      get '', to: 'events#show'
+      put '', to: 'events#update'
+      delete '', to: 'events#destroy'
+      get 'comments', to: 'comments#index'
     end
   end
   

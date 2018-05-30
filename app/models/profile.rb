@@ -18,6 +18,13 @@ class Profile < ApplicationRecord
     include PgSearch
     pg_search_scope :search, against: [:full_name]
     
+        
+    def add_karma amount
+        self.karma = self.karma + amount
+        self.save
+        self.karma
+    end
+    
     def country
        ISO3166::Country.find_country_by_alpha2(:country_code).name
     end

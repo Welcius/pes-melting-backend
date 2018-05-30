@@ -3,7 +3,7 @@ info:
   title: Melting App API
   description: API for the Melting App
   version: 1.0.0
-host: melting-app.herokuapp.com
+host: projecte-pes-acami.c9users.io
 tags:
   - name: auth
     description: Auth related endpoints
@@ -363,7 +363,6 @@ paths:
           description: Event doesn't exist
       security:
         - JWT: []
-  '/users/:user_id/events':
     post:
       tags:
         - event
@@ -372,11 +371,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
         - name: event
           in: body
           description: The new event
@@ -449,8 +443,8 @@ paths:
           description: Event doesn't exist
       security:
         - JWT: []
-  '/users/{user_id}/events/{event_id}/event':
-    put:
+  '/events/{event_id}':
+    get:
       tags:
         - event
       consumes:
@@ -463,7 +457,26 @@ paths:
           required: true
           type: integer
           minimum: 1
-        - name: user_id
+      responses:
+        '200':
+          description: Shows event
+          schema:
+            $ref: '#/definitions/Event'
+        '401':
+          description: Not logged in
+        '404':
+          description: Event doesn't exist
+      security:
+        - JWT: []
+    put:
+      tags:
+        - event
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: event_id
           in: path
           required: true
           type: integer
@@ -522,41 +535,9 @@ paths:
           required: true
           type: integer
           minimum: 1
-        - name: user_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
       responses:
         '200':
           description: Event erased
-          schema:
-            $ref: '#/definitions/Event'
-        '401':
-          description: Not logged in
-        '404':
-          description: Event doesn't exist
-      security:
-        - JWT: []
-  '/users/{user_id/searches/:query/event':
-    get:
-      tags:
-        - event
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: event_id
-          in: path
-          required: true
-          type: integer
-          minimum: 1
-      responses:
-        '200':
-          description: Shows event
-          schema:
-            $ref: '#/definitions/Event'
         '401':
           description: Not logged in
         '404':
