@@ -20,14 +20,17 @@ class EventsController < ApplicationController
 
         def create    
             location = Location.create(location_params)
-            location.save
-            event = current_user.events.create(event_params)
-            event.location = location
-            if event.save    
-                render json: event, status: :created    
-            else    
-                sendStatus("Error creating event", :conflict, @event.errors)  
-            end 
+            if location.save?
+                event = current_user.events.create(event_params)
+                event.location = location
+                if event.save    
+                    render json: event, status: :created    
+                else    
+                    sendStatus("Error creating event", :bad_request, event.errors)  
+                end 
+            else
+                sendStatus("Error creating location", :bad_request, location.errors)  
+            end
         end    
 
         def show   
