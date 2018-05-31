@@ -20,7 +20,7 @@ class EventsController < ApplicationController
 
         def create    
             location = Location.create(location_params)
-            if location.save?
+            if location.save
                 event = current_user.events.create(event_params)
                 event.location = location
                 if event.save    
