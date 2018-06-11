@@ -24,8 +24,8 @@ class EventsController < ApplicationController
                 event = current_user.events.create(event_params)
                 event.location = location
                 if event.save    
-                    render json: event, status: :created 
                     current_user.profile.add_karma(20)
+                    render json: event, status: :created 
                 else    
                     sendStatus("Error creating event", :bad_request, event.errors)  
                 end 
@@ -72,8 +72,8 @@ class EventsController < ApplicationController
             if not event.nil?
                 if same_user_as_current(event.user_id)
                     event.destroy    
-                    sendStatus("Event erased", :ok) 
                     current_user.profile.add_karma(-35)
+                    sendStatus("Event erased", :ok) 
                 else
                     sendStatus("Current user != creator of the event", :conflict, event.errors) 
                 end

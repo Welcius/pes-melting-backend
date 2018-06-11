@@ -28,8 +28,8 @@ class CommentsController < ApplicationController
               comment.user_id=current_user.id if current_user
               comment.save
               if comment.save
+                current_user.profile.add_karma(3)  
                 render json: comment, status: :created  
-                current_user.profile.add_karma(3)
               else
                 sendStatus("Error creating comment", :conflict, comment.errors)  
               end
@@ -64,8 +64,8 @@ class CommentsController < ApplicationController
             else
                 if same_user_as_current(comment.user_id)
                     comment.destroy
-                    sendStatus("Comment erased", :ok)
                     current_user.profile.add_karma(-3)
+                    sendStatus("Comment erased", :ok)
                 else
                     sendStatus("Current user != creator of the event", :conflict, comment.errors) 
                 end

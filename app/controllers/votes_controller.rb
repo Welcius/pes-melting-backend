@@ -50,9 +50,9 @@ class VotesController < ApplicationController
         vote.user_id = current_user.id
         vote.event_id = (params[:event_id]).to_i
         if vote.save
-          render json: vote, status: :created  
           current_user.profile.add_karma(5)
           event.user_id.profile.add_karma(1)
+          render json: vote, status: :created  
         else
           sendStatus("Error creating event", :conflict, vote.errors)
         end
@@ -71,9 +71,9 @@ class VotesController < ApplicationController
       if not vote.nil?
         if same_user_as_current(vote.user_id)
           vote.destroy
-          sendStatus("Vote erased", :ok)
           current_user.profile.add_karma(-5)
           event.user_id.profile.add_karma(-1)
+          sendStatus("Vote erased", :ok)
         else
           sendStatus("Current user != creator of the event", :unauthorized) 
         end
