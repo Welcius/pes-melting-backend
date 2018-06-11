@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  # aquesta no pot anar a dins de auth perquè si no es detecta com a pishing
+  get 'confirm' => 'users#confirm'
+  
   scope 'auth' do
     post 'register', to: 'users#register'
     post 'activate', to: 'users#activate'
     post 'login' => 'user_token#create'
+    post 'reset' => 'users#reset'
   end
 
   scope 'users' do
