@@ -112,6 +112,46 @@ paths:
               jwt: YOUR_JWT_TOKEN
         '404':
           description: Incorrect email and/or password / User not activated / User deleted
+  /auth/reset:
+    post:
+      tags:
+        - auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: formData
+          required: true
+          type: string
+          format: email
+      responses:
+        '200':
+          description: Click in the link of the mail you just received to confirm
+        '400':
+          description: Missing fields
+  /confirm:
+    get:
+      tags:
+        - auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: c
+          in: path
+          required: true
+          type: string
+          description: The reset token that you received by email
+      responses:
+        '200':
+          description: Password successfully reset
+        '400':
+          description: Missing fields
+        '404':
+          description: Expired/invalid confirm code
   '/users/{user_id}/profile':
     get:
       tags:
