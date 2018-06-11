@@ -50,8 +50,12 @@ class VotesController < ApplicationController
         vote.user_id = current_user.id
         vote.event_id = (params[:event_id]).to_i
         if vote.save
-          current_user.profile.add_karma(5)
-          event.user_id.profile.add_karma(1)
+          if not current_user.profile.nil? 
+            current_user.profile.add_karma(5)
+          end
+          uid = Event.find_by_id(params[:event_id].to_i).user_id
+          user = User.find_by_id(uid)
+          user.profile.add_karma(1)
           render json: vote, status: :created  
         else
           sendStatus("Error creating event", :conflict, vote.errors)

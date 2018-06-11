@@ -28,7 +28,9 @@ class CommentsController < ApplicationController
               comment.user_id=current_user.id if current_user
               comment.save
               if comment.save
-                current_user.profile.add_karma(3)  
+                  if not current_user.profile.nil? 
+                    current_user.profile.add_karma(3)  
+                  end
                 render json: comment, status: :created  
               else
                 sendStatus("Error creating comment", :conflict, comment.errors)  
