@@ -33,7 +33,7 @@ class UsersController < ApplicationController
             if not user.nil?
                 rnd_hash = SecureRandom.hex[0..16]
                 user.update(:reset_hash => rnd_hash)
-                UserMailer.reset_email(params[:email].downcase, user.username, URI.join(request.base_url, 'auth/confirm?c=' + rnd_hash)).deliver_now
+                UserMailer.reset_email(params[:email].downcase, user.username, URI.join(request.base_url, 'confirm?c=' + rnd_hash)).deliver_now
             end
             # Independentment de si l'usuari existia o no (seguretat)
             sendStatus("Click in the link of the mail you just received to confirm", :ok)

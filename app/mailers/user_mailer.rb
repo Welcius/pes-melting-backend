@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     def reset_email(target_mail, username, confirm_url)
         @username = username
         @confirm_url = confirm_url
-        mail(to: target_mail, subject: 'Confirm your password reset')
+        mail(to: target_mail, subject: 'Please, confirm your password reset')
     end
     
     def password_email(target_mail, username, new_password)
