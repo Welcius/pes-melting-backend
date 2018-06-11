@@ -76,7 +76,9 @@ class VotesController < ApplicationController
         if same_user_as_current(vote.user_id)
           vote.destroy
           current_user.profile.add_karma(-5)
-          event.user_id.profile.add_karma(-1)
+          uid = Event.find_by_id(params[:event_id].to_i).user_id
+          user = User.find_by_id(uid)
+          user.profile.add_karma(-1)
           sendStatus("Vote erased", :ok)
         else
           sendStatus("Current user != creator of the event", :unauthorized) 
