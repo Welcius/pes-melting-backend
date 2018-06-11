@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     post 'register', to: 'users#register'
     post 'activate', to: 'users#activate'
     post 'login' => 'user_token#create'
+    post 'reset' => 'users#reset'
+    get 'confirm' => 'users#confirm'
   end
 
   scope 'users' do

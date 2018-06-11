@@ -21,11 +21,43 @@ module UsersHelper
 end
 
 class UsersController < ApplicationController
-    before_action :authenticate_user, :except => [:register, :activate]
+    before_action :authenticate_user, :except => [:register, :activate, :reset, :confirm]
     include UsersHelper
     include UtilsModule
     require 'securerandom'
     require 'bcrypt'
+    
+    def reset
+        if params.has_key?(:email)
+            user = User.find_by_email(params[:email].downcase)
+            if not user.nil?
+                rnd_hash = SecureRandom.hex[0..16]
+                user.update(:reset_hash => rnd_hash)
+                UserMailer.reset_email(params[:email].downcase, user.username, URI.join(request.base_url, 'auth/confirm?c=' + rnd_hash)).deliver_now
+            end
+            # Independentment de si l'usuari existia o no (seguretat)
+            sendStatus("Click in the link of the mail you just received to confirm", :ok)
+        else
+            sendStatus("Missing fields", :bad_request) 
+        end
+    end
+    
+    def confirm
+        if params.has_key?(:c)
+            user = User.find_by_reset_hash(params[:c])
+            if not user.nil?
+                new_password = SecureRandom.hex[0..11]
+                encrypted_pwd = BCrypt::Password.create(new_password)
+                user.update(:reset_hash => nil, :last_status => Time.now.utc.to_i, :password_digest => encrypted_pwd)
+                UserMailer.password_email(user.email, user.username, new_password).deliver_now
+                sendStatus("Password successfully reset", :ok)
+            else
+                sendStatus("Expired/invalid confirm code", :not_found)
+            end
+        else
+            sendStatus("Missing fields", :bad_request)
+        end
+    end
     
     def register
         if params.has_key?(:email) and params.has_key?(:username) and params.has_key?(:password)
