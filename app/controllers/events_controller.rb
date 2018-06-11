@@ -75,7 +75,9 @@ class EventsController < ApplicationController
                 if same_user_as_current(event.user_id)
                     event.destroy    
                     sendStatus("Event erased", :ok) 
-                    current_user.profile.add_karma(-35)
+                    if not current_user.profile.nil? 
+                        current_user.profile.add_karma(-35)
+                    end
                 else
                     sendStatus("Current user != creator of the event", :conflict, event.errors) 
                 end

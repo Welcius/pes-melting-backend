@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
                 if same_user_as_current(comment.user_id)
                     comment.update(comment_params)
                   #  if e.update(event_params) and l.update(location_params)
-                    render json: { comment:comment}, status: :ok
+                    render json: comment, status: :ok
                 #   else
                 #       sendStatus("Error modifying event", :conflict, e.errors) 
                   # end
@@ -66,7 +66,9 @@ class CommentsController < ApplicationController
             else
                 if same_user_as_current(comment.user_id)
                     comment.destroy
-                    current_user.profile.add_karma(-3)
+                    if not current_user.profile.nil? 
+                        current_user.profile.add_karma(-3)
+                    end
                     sendStatus("Comment erased", :ok)
                 else
                     sendStatus("Current user != creator of the event", :conflict, comment.errors) 

@@ -75,7 +75,9 @@ class VotesController < ApplicationController
       if not vote.nil?
         if same_user_as_current(vote.user_id)
           vote.destroy
-          current_user.profile.add_karma(-5)
+          if not current_user.profile.nil? 
+            current_user.profile.add_karma(-5)
+          end
           uid = Event.find_by_id(params[:event_id].to_i).user_id
           user = User.find_by_id(uid)
           user.profile.add_karma(-1)
