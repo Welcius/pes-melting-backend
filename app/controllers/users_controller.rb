@@ -36,7 +36,7 @@ class UsersController < ApplicationController
                 UserMailer.reset_email(params[:email].downcase, user.username, URI.join(request.base_url, 'confirm?c=' + rnd_hash)).deliver_now
             end
             # Independentment de si l'usuari existia o no (seguretat)
-            sendStatus("Click in the link of the mail you just received to confirm", :ok)
+            sendStatus("Please, check your mail inbox (spam folder as well) to confirm your password reset", :ok)
         else
             sendStatus("Missing fields", :bad_request) 
         end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
                 encrypted_pwd = BCrypt::Password.create(new_password)
                 user.update(:reset_hash => nil, :last_status => Time.now.utc.to_i, :password_digest => encrypted_pwd)
                 UserMailer.password_email(user.email, user.username, new_password).deliver_now
-                sendStatus("Password successfully reset", :ok)
+                sendStatus("Password successfully reset, please check your mail inbox for the new password", :ok)
             else
                 sendStatus("Expired/invalid confirm code", :not_found)
             end
