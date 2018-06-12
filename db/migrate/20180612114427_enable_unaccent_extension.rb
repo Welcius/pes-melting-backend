@@ -1,5 +1,9 @@
 class EnableUnaccentExtension < ActiveRecord::Migration[5.1]
-  def change
-    enable_extension 'unaccent'
+  def up
+    execute "create extension unaccent"
+  end
+
+  def down
+    execute "drop extension unaccent"
   end
 end

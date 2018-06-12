@@ -19,10 +19,6 @@ class SearchesController < ApplicationController
         render json: profile
     end
 
-    
-    # def review
-    #     review = Review.search(params[:query])
-    #     render json: review
-    # end
+
 
 end
