@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post 'activate', to: 'users#activate'
     post 'login' => 'user_token#create'
     post 'reset' => 'users#reset'
+    put 'password' => 'users#change_password'
   end
 
   scope 'users' do
