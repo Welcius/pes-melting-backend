@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
     end
     
     def university
-        university = University.where("unaccent(name) ILIKE unaccent(?) OR unaccent(name) ILIKE unaccent(?) OR unaccent(name) ILIKEunaccent(?) OR unaccent(alias) ILIKE unaccent(?) ", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%")
+        university = University.where("unaccent(name) ILIKE unaccent(?) OR unaccent(name) ILIKE unaccent(?) OR unaccent(name) ILIKE unaccent(?) OR unaccent(alias) ILIKE unaccent(?) ", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%","#{params[:query]}%")
         render json: university
     end
     
