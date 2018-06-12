@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
     def event 
-        event = Event.where("title ILIKE ? OR title ILIKE ? OR title ILIKE ?", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
+        event = Event.where("unaccent(title) LIKE unaccent(?) OR unaccent(title) LIKE unaccent(?) OR unaccent(title) LIKE unaccent(?)", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
         render json: event
     end
 
