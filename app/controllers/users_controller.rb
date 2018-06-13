@@ -60,12 +60,12 @@ class UsersController < ApplicationController
     end
     
     def change_password
-        if params.has_key?(:old_password) and params.has_key(:password)
+        if params.has_key?(:old_password) and params.has_key?(:password)
             if checkRegisterFields?(current_user.email, current_user.username, params[:password])
                 if current_user.authenticate(params[:old_password])
                     encrypted_pwd = BCrypt::Password.create(params[:password])
-                    user.update(:last_status => Time.now.utc.to_i, :password_digest => encrypted_pwd)
-                    UserMailer.changed_password_email(user.email, user.username).deliver_now
+                    current_user.update(:last_status => Time.now.utc.to_i, :password_digest => encrypted_pwd)
+                    UserMailer.changed_password_email(current_user.email, current_user.username).deliver_now
                     sendStatus("Password successfully changed", :ok)
                 else
                    sendStatus("Wrong password, please check that the old password is the same as the current one", :bad_request) 
