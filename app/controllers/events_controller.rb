@@ -92,7 +92,7 @@ class EventsController < ApplicationController
                 if event.votes.count == 0
                     render :json => []
                 else
-                    render json: Profile.joins(:user => :votes).where('votes.event_id = ?', event.id)
+                    render json: Profile.joins(:user => :votes).where('NOT users.account_deleted AND votes.event_id = ?', event.id)
                 end
             else
                 sendStatus("Event doesn't exist", :not_found)
