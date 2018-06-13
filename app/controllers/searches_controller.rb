@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
     end
     
     def profile
-        profile = Profile.joins(:user).where("unaccent(username) ILIKE unaccent(?) OR unaccent(username) ILIKE unaccent(?) OR unaccent(username) ILIKE unaccent(?)", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
+        profile = Profile.joins(:user).where("NOT account_deleted AND (unaccent(username) ILIKE unaccent(?) OR unaccent(username) ILIKE unaccent(?) OR unaccent(username) ILIKE unaccent(?))", "#{params[:query]}%", "% #{params[:query]}%", "%#{params[:query]}%")
         render json: profile
     end
 
