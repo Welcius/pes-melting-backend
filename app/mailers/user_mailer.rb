@@ -19,4 +19,9 @@ class UserMailer < ApplicationMailer
         @new_password = new_password
         mail(to: target_mail, subject: 'Your new password')
     end
+    
+    def changed_password_email(target_mail, username)
+        @username = username
+        mail(to: target_mail, subject: 'Your password has been changed')
+    end
 end

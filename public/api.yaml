@@ -131,6 +131,34 @@ paths:
           description: Click in the link of the mail you just received to confirm
         '400':
           description: Missing fields
+  /auth/password:
+    put:
+      tags:
+        - auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: old_password
+          in: formData
+          required: true
+          type: string
+          format: password   
+        - name: password
+          in: formData
+          required: true
+          type: string
+          format: password
+      responses:
+        '200':
+          description: Password successfully changed
+        '401':
+          description: Not logged in
+        '400':
+          description: Wrong old password / Password dosn't meet the appropiate requirements
+      security:
+        - JWT: []
   /confirm:
     get:
       tags:
