@@ -1290,6 +1290,8 @@ definitions:
       user_id:
         type: integer
         minimum: 1
+      username:
+        type: string
       utc_timestamp:
         type: integer
         minimum: 0
@@ -1304,7 +1306,9 @@ definitions:
     example:
     - body: I just got free pizza in my campus!
       user_id: 1
+      username: alexcmillan
       utc_timestamp: 1526942307
     - body: WHERE????
       user_id: 2
+      username: carlavarea
       utc_timestamp: 1526942340
