@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :latitude, :longitude, :address, :name, :date, :user_id
+  attributes :id, :title, :description, :latitude, :longitude, :address, :name, :date, :user_id, :num_attendees
   
   def latitude
       object.location.latitude
@@ -15,5 +15,9 @@ class EventSerializer < ActiveModel::Serializer
   
   def name
       object.location.name
+  end
+  
+  def num_attendees
+      Profile.joins(:user => :votes).where('NOT users.account_deleted AND votes.event_id = ?', object.id).count
   end
 end
