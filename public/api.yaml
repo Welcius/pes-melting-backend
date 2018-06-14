@@ -1172,6 +1172,7 @@ definitions:
         address: adreça event id 1
         name: nom event id 1
         date: 11/11/11
+        num_attendees: 1
       - event_id: 2
         title: Titol event 2
         description: desc
@@ -1181,6 +1182,7 @@ definitions:
         address: adreça event id 2
         name: nom event id 2
         date: 22/11/22
+        num_attendees: 2
   ArrayOfComments:
     type: array
     items:
@@ -1249,7 +1251,7 @@ definitions:
     required:
       - >-
         event_id, title, description, user_id, latitude, longitude, address,
-        name, date
+        name, date, num_attendees
     properties:
       event_id:
         type: integer
@@ -1270,6 +1272,8 @@ definitions:
         type: string
       date:
         type: string
+      num_attendees:
+        type: integer
     example:
       event_id: 1
       title: Aquest és un event
@@ -1280,6 +1284,7 @@ definitions:
       address: Carrer ja funciona
       name: Festa del carrer
       date: 10/10/2020
+      num_attendees: 4
   ChatMessage:
     type: object
     required:
